@@ -1,0 +1,42 @@
+\AtBeginDocument{\let\maketitle\relax}
+
+\usepackage{xcolor}
+\usepackage{fontspec}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{varwidth}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+
+\setmainfont{[VIC-Regular.ttf]}
+
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight]{assets/title_background.png}%
+\vfill
+}}}
+
+\AddToShipoutPictureBG{%
+  \AtPageUpperLeft{%
+    \raisebox{-\height}{\includegraphics[width=\paperwidth]{assets/header_graphic.png}}
+  }
+}
+
+\newtcbox{\badge}[1][green]{
+  on line,
+  arc=2pt,
+  colback=#1!50!black,
+  colframe=#1!50!black,
+  fontupper=\color{white},
+  boxrule=1pt,
+  boxsep=0pt,
+  left=6pt,
+  right=6pt,
+  top=2pt,
+  bottom=2pt
+}
+

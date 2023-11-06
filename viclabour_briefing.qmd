@@ -1,0 +1,99 @@
+---
+title: "DJSIR Jobs Summary"
+author: "DJSIR EPPC Data + Analytics"
+date: "`r Sys.Date()`"
+format:
+  pdf: 
+    documentclass: report
+    include-in-header: "assets/preamble.tex"
+    papersize: a4
+    toc: false
+    geometry:
+    - top=20mm
+    - bottom=24mm
+    - left=24mm
+    - right=24mm
+    - heightrounded
+---
+```{r Setup, include=FALSE}
+
+
+```
+
+```{r Update data, include=FALSE}
+
+
+```
+
+
+
+```{r}
+# Identify release information
+release_month <- month.name[10]
+release_type <- c(
+  "headline statistics", 
+  "regional update",
+  "regional and industry update"
+  )[2]
+subtitle <- paste(release_month, release_type)
+
+# Identify new releases
+is_new <- list(
+  youth = "",
+  regional = "\\hfill \\badge{New}"
+)
+```
+
+
+<!-- title page -->
+\begin{titlepage}
+\AddToShipoutPicture*{\BackgroundPic}
+  \begin{flushright}
+    \begin{varwidth}{4in}
+      \begin{flushright}
+        \color{black}
+        \vspace*{10.65cm}
+        {\Huge\textbf{DJSIR Jobs Summary}}
+        \linebreak
+        \linebreak
+        {\large \textbf{`r subtitle`}}
+        \linebreak
+        \linebreak
+        \textbf{`r format(Sys.Date(), "%e %B %Y")`}
+        \vfill
+      \end{flushright}
+    \end{varwidth}
+  \end{flushright}
+\end{titlepage}
+
+
+<!-- TOC & Disclaimer page -->
+\pagenumbering{gobble}
+\setcounter{tocdepth}{1}
+\tableofcontents
+\vspace*{\fill}
+\copyright \enspace Department of Jobs, Skills, Industry and Regions, 
+`r format(Sys.Date(), "%Y")`
+\newline
+\newline
+The content of this Victorian Government report is provided for information purposes only. No claim is made as to the accuracy or currency of any of the content in this report at any time. The Victorian Government and this agency (the Department of Jobs, Skills, Industry and Regions) do not accept any liability to any person for the information (or the use of such information) which is provided on this report, including information sourced or derived from third parties or incorporated into the report by reference.
+\newpage
+\pagenumbering{arabic}
+
+
+
+# Summary `r is_new[["regional"]]`
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+1 + 1
+```
+
+# Table test
+
+
+
+
+# Forward release schedule
+Some text here

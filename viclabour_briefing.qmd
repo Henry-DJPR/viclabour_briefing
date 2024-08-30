@@ -27,7 +27,7 @@ format:
 
 
 
-```{r}
+```{r, include=FALSE}
 # Identify release information
 release_month <- month.name[10]
 release_type <- c(

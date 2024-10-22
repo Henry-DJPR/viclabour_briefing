@@ -111,29 +111,19 @@ make_table <- function(
     govt    = as.Date("2014-11-01")
   )
 
-  breaks_labels <- c(
-    current = sprintf("\\textbf{%s}", format(breaks["current"], "%b %Y")),
-    last = sprintf(
-      "\\textbf{One %s change} \\small{%s}",
-      tolower(interval),
-      format(breaks["last"], "%b %Y")
-    ),
-    year = sprintf(
-      "\\textbf{One year change} \\small{%s}",
-      format(breaks["year"], "%b %Y")
-    ),
-    covid = sprintf(
-      "\\textbf{Change since COVID‑19} \\small{%s}",
-      format(breaks["covid"], "%b %Y")
-    ),
-    govt = sprintf(
-      "\\textbf{Change during government} \\small{%s}",
-      format(breaks["govt"], "%b %Y")
-    )
+  row_header_1 <- c(
+    current = "Current",
+    last = sprintf("One %s change", tolower(interval)),
+    year = "One year change",
+    covid = "Change since COVID‑19",
+    govt = "Change during government"
   )
 
-  if(!all(names(breaks) %in% names(breaks_labels))){
-    stop("Please ensure all breaks have a label in breaks_labels")
+  row_header_2 <-  format(breaks, "%b %Y")
+
+
+  if(!all(names(breaks) %in% names(row_header_1))){
+    stop("Please ensure all breaks have a label in row_header")
   }
 
 
@@ -194,23 +184,21 @@ make_table <- function(
   deltas[]
 
 
-  # latex preamble
-  table_start <- c(
-    "\\begin{table}[!htbp]",
-    "\\centering",
-    sprintf("\\ref{%s}", table_name),
-    sprintf("\\label{%s}", table_name),
-    sprintf("\\caption{%s}", notes),
-    sprintf(
-      "\\begin{tabular}{@{\\extracolsep{5pt}} lc%s}",
-      paste(rep("r", length(breaks)), collapse = "")
-    )
-    )
-  table_colnames <- paste(breaks_labels, collapse = "&")
-  table_end <- c(
-    "\\end{tabular}",
-    "\\end{table}"
-  )
+  # flextable
+  flex <- deltas |>
+    flextable() |>
+    set_header_labels(values = c("", unname(row_header_2))) |>
+    add_header_row(values = c("", row_header_1)) |>
+    bold(i = 1, part = "header") |>
+    color(color = "#FFFFFF", part = "header") |>
+    fontsize(i = 2, size = 10, part = "header") |>
+    bg(bg = "#222222", part = "header") |>
+    hline(1, border = officer::fp_border("#222222"), part = "header") |>
+    align(j = 2:6, align = "right", part = "header") |>
+    align(j = 2:6, align = "right", part = "body") |>
+    fit_to_width(max_width = 210 - 24 * 2, unit = "mm")
+
+  flex
 
 
   # Table row contents

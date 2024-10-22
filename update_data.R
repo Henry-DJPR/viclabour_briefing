@@ -14,6 +14,7 @@ library(jsonlite)
 library(xml2)
 library(openxlsx)
 library(fst)
+library(flextable)
 
 
 # Parse table index

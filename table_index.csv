@@ -1,48 +1,48 @@
 section,table_name,name,series_id,parse_method,last_updated,highlight,smoothing_months,up_is_good,caption,just_updated
-Test section 1,Overview,Unemployment rate,A84423354L,abs_ts,2024-08-15,TRUE,,FALSE,"All data seasonally adjusted, other than youth figures, which are smoothed using a 12-month rolling average, and regional figures, which are smoothed using a 3-month rolling average.",TRUE
-Test section 1,Overview,Male unemployment rate,A84423242V,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 1,Overview,Female unemployment rate,A84423466F,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 1,Overview,Youth unemployment rate,A84424691V,abs_ts,2024-08-15,FALSE,12,FALSE,"",TRUE
-Test section 1,Overview,Regional unemployment rate,A84600079X,abs_ts,2024-08-22,FALSE,3,FALSE,"",TRUE
-Test section 1,Overview,Unemployed persons,A84423350C,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 1,Overview,Employed persons,A84423349V,abs_ts,2024-08-15,TRUE,,TRUE,"",TRUE
-Test section 1,Overview,Employed full-time,A84423357V,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Male employment,A84423237A,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Female employment,A84423461V,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Youth employment,A84424687C,abs_ts,2024-08-15,FALSE,12,TRUE,"",TRUE
-Test section 1,Overview,Participation rate,A84423355R,abs_ts,2024-08-15,TRUE,,TRUE,"",TRUE
-Test section 1,Overview,Male participation rate,A84423243W,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Female participation rate,A84423467J,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Overview,Youth participation rate,A84424692W,abs_ts,2024-08-15,FALSE,12,TRUE,"",TRUE
-Test section 1,Overview,Monthly hours worked in all jobs,A84426256L,abs_ts,2024-08-15,TRUE,,TRUE,"",TRUE
-Test section 1,Overview,Underemployment rate,A85223450L,abs_ts,2024-08-15,TRUE,,FALSE,"",TRUE
-Test section 1,Overview,Underutilisation rate,A85223451R,abs_ts,2024-08-15,TRUE,,FALSE,"",TRUE
-Test section 1,Overview,Employment to population ratio,A84423356T,abs_ts,2024-08-15,TRUE,,TRUE,"",TRUE
-Test section 1,Indicators,Employed persons,A84423349V,abs_ts,2024-08-15,TRUE,,TRUE,Based on Australian Bureau of Statistics Labour Force.,TRUE
-Test section 1,Indicators,Employed full-time,A84423357V,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Indicators,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Indicators,Employment to population ratio,A84423356T,abs_ts,2024-08-15,TRUE,,TRUE,"",TRUE
-Test section 1,Indicators,Employment to population ratio (Males),A84423244X,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 1,Indicators,Employment to population ratio (Females),A84423468K,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 2,Sex,Male employment,A84423237A,abs_ts,2024-08-15,FALSE,,TRUE,Based on Australian Bureau of Statistics Labour Force.,TRUE
-Test section 2,Sex,Female employment,A84423461V,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 2,Sex,Male unemployed people,A84423238C,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 2,Sex,Female unemployed people,A84423462W,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 2,Sex,Male unemployment rate,A84423242V,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 2,Sex,Female unemployment rate,A84423466F,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 2,Sex,Male participation rate,A84423243W,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 2,Sex,Female participation rate,A84423467J,abs_ts,2024-08-15,FALSE,,TRUE,"",TRUE
-Test section 3,UnemploymentUnderemployment,Unemployed persons,A84423350C,abs_ts,2024-08-15,TRUE,,FALSE,Based on Australian Bureau of Statistics Labour Force.,TRUE
-Test section 3,UnemploymentUnderemployment,Male unemployment rate,A84423242V,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,UnemploymentUnderemployment,Female unemployment rate,A84423466F,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,UnemploymentUnderemployment,Youth unemployment rate,A84424691V,abs_ts,2024-08-15,FALSE,12,FALSE,Youth data smooted using a 12 month rolling average. All other series are seasonally adjusted.,TRUE
-Test section 3,UnemploymentUnderemployment,Unemployment rate,A84423354L,abs_ts,2024-08-15,TRUE,,FALSE,"",TRUE
-Test section 3,UnemploymentUnderemployment,Underutilisation rate,A85223451R,abs_ts,2024-08-15,TRUE,,FALSE,"",TRUE
-Test section 3,StateUnemployment,Australian unemployment rate,A84423050A,abs_ts,2024-08-15,FALSE,,FALSE,Based on Australian Bureau of Statistics Labour Force.,TRUE
-Test section 3,StateUnemployment,Victoria unemployment rate,A84423354L,abs_ts,2024-08-15,FALSE,,FALSE,All series seasonally adjusted.,TRUE
-Test section 3,StateUnemployment,New South Wales unemployment rate,A84423270C,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,StateUnemployment,Queensland unemployment rate,A84423284T,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,StateUnemployment,Western Australia unemployment rate,A84423326C,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,StateUnemployment,South Australia unemployment rate,A84423368A,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
-Test section 3,StateUnemployment,Tasmania unemployment rate,A84423298F,abs_ts,2024-08-15,FALSE,,FALSE,"",TRUE
+Test section 1,Overview,Unemployment rate,A84423354L,abs_ts,2024-10-17,TRUE,,FALSE,"All data seasonally adjusted, other than youth figures, which are smoothed using a 12-month rolling average, and regional figures, which are smoothed using a 3-month rolling average.",TRUE
+Test section 1,Overview,Male unemployment rate,A84423242V,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 1,Overview,Female unemployment rate,A84423466F,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 1,Overview,Youth unemployment rate,A84424691V,abs_ts,2024-10-17,FALSE,12,FALSE,"",TRUE
+Test section 1,Overview,Regional unemployment rate,A84600079X,abs_ts,2024-09-26,FALSE,3,FALSE,"",TRUE
+Test section 1,Overview,Unemployed persons,A84423350C,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 1,Overview,Employed persons,A84423349V,abs_ts,2024-10-17,TRUE,,TRUE,"",TRUE
+Test section 1,Overview,Employed full-time,A84423357V,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Male employment,A84423237A,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Female employment,A84423461V,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Youth employment,A84424687C,abs_ts,2024-10-17,FALSE,12,TRUE,"",TRUE
+Test section 1,Overview,Participation rate,A84423355R,abs_ts,2024-10-17,TRUE,,TRUE,"",TRUE
+Test section 1,Overview,Male participation rate,A84423243W,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Female participation rate,A84423467J,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Overview,Youth participation rate,A84424692W,abs_ts,2024-10-17,FALSE,12,TRUE,"",TRUE
+Test section 1,Overview,Monthly hours worked in all jobs,A84426256L,abs_ts,2024-10-17,TRUE,,TRUE,"",TRUE
+Test section 1,Overview,Underemployment rate,A85223450L,abs_ts,2024-10-17,TRUE,,FALSE,"",TRUE
+Test section 1,Overview,Underutilisation rate,A85223451R,abs_ts,2024-10-17,TRUE,,FALSE,"",TRUE
+Test section 1,Overview,Employment to population ratio,A84423356T,abs_ts,2024-10-17,TRUE,,TRUE,"",TRUE
+Test section 1,Indicators,Employed persons,A84423349V,abs_ts,2024-10-17,TRUE,,TRUE,Based on Australian Bureau of Statistics Labour Force.,TRUE
+Test section 1,Indicators,Employed full-time,A84423357V,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Indicators,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Indicators,Employment to population ratio,A84423356T,abs_ts,2024-10-17,TRUE,,TRUE,"",TRUE
+Test section 1,Indicators,Employment to population ratio (Males),A84423244X,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 1,Indicators,Employment to population ratio (Females),A84423468K,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 2,Sex,Male employment,A84423237A,abs_ts,2024-10-17,FALSE,,TRUE,Based on Australian Bureau of Statistics Labour Force.,TRUE
+Test section 2,Sex,Female employment,A84423461V,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 2,Sex,Male unemployed people,A84423238C,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 2,Sex,Female unemployed people,A84423462W,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 2,Sex,Male unemployment rate,A84423242V,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 2,Sex,Female unemployment rate,A84423466F,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 2,Sex,Male participation rate,A84423243W,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 2,Sex,Female participation rate,A84423467J,abs_ts,2024-10-17,FALSE,,TRUE,"",TRUE
+Test section 3,UnemploymentUnderemployment,Unemployed persons,A84423350C,abs_ts,2024-10-17,TRUE,,FALSE,Based on Australian Bureau of Statistics Labour Force.,TRUE
+Test section 3,UnemploymentUnderemployment,Male unemployment rate,A84423242V,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,UnemploymentUnderemployment,Female unemployment rate,A84423466F,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,UnemploymentUnderemployment,Youth unemployment rate,A84424691V,abs_ts,2024-10-17,FALSE,12,FALSE,Youth data smooted using a 12 month rolling average. All other series are seasonally adjusted.,TRUE
+Test section 3,UnemploymentUnderemployment,Unemployment rate,A84423354L,abs_ts,2024-10-17,TRUE,,FALSE,"",TRUE
+Test section 3,UnemploymentUnderemployment,Underutilisation rate,A85223451R,abs_ts,2024-10-17,TRUE,,FALSE,"",TRUE
+Test section 3,StateUnemployment,Australian unemployment rate,A84423050A,abs_ts,2024-10-17,FALSE,,FALSE,Based on Australian Bureau of Statistics Labour Force.,TRUE
+Test section 3,StateUnemployment,Victoria unemployment rate,A84423354L,abs_ts,2024-10-17,FALSE,,FALSE,All series seasonally adjusted.,TRUE
+Test section 3,StateUnemployment,New South Wales unemployment rate,A84423270C,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,StateUnemployment,Queensland unemployment rate,A84423284T,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,StateUnemployment,Western Australia unemployment rate,A84423326C,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,StateUnemployment,South Australia unemployment rate,A84423368A,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE
+Test section 3,StateUnemployment,Tasmania unemployment rate,A84423298F,abs_ts,2024-10-17,FALSE,,FALSE,"",TRUE

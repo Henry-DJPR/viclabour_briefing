@@ -89,7 +89,7 @@ if(update_briefing | force_refresh){
 
   # Generate tables
   table_list <- split(indx, by = "table_name")
-  table_list <- lapply(
+  lapply(
     table_list,
     \(x){
       make_table(
@@ -103,12 +103,5 @@ if(update_briefing | force_refresh){
       )
     }
   )
-
-  saveRDS(table_list, "assets/report_tables.RDS")
-  mapply(
-    \(x, n) writeLines(x, paste0("assets/tables/", n, ".html")),
-    table_list,
-    names(table_list)
-    )
 
 }

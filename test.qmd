@@ -2,7 +2,6 @@
 title: "DJSIR Jobs Summary"
 author: "DJSIR EPPC Data + Analytics"
 date: "`r Sys.Date()`"
-pdf-engine: xelatex
 format:
   pdf: 
     documentclass: report
@@ -16,11 +15,22 @@ format:
     - left=24mm
     - right=24mm
     - heightrounded
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-```{r}
-#| echo: false
+```{r Setup, include=FALSE}
 
+
+```
+
+```{r Update data, include=FALSE}
+
+
+```
+
+```{r}
 # Identify release information
 release_month <- month.name[10]
 release_type <- c(
@@ -35,9 +45,6 @@ is_new <- list(
   youth = "",
   regional = "\\hfill \\badge{New}"
 )
-
-# Tables 
-tbls <- readRDS("assets/report_tables.RDS")
 ```
 
 <!-- title page -->
@@ -71,16 +78,25 @@ tbls <- readRDS("assets/report_tables.RDS")
 \tableofcontents
 \vspace*{\fill}
 ```
-\copyright \enspace Department of Jobs, Skills, Industry and Regions, `r format(Sys.Date(), "%Y")` \newline \newline The content of this Victorian Government report is provided for information purposes only. No claim is made as to the accuracy or currency of any of the content in this report at any time. The Victorian Government and this agency (the Department of Jobs, Skills, Industry and Regions) do not accept any liability to any person for the information (or the use of such information) which is provided on this report, including information sourced or derived from third parties or incorporated into the report by reference. \newpage \pagenumbering{arabic}
+\copyright \enspace Department of Jobs, Skills, Industry and Regions,
+`r format(Sys.Date(), "%Y")` \newline \newline The content of this
+Victorian Government report is provided for information purposes only.
+No claim is made as to the accuracy or currency of any of the content in
+this report at any time. The Victorian Government and this agency (the
+Department of Jobs, Skills, Industry and Regions) do not accept any
+liability to any person for the information (or the use of such
+information) which is provided on this report, including information
+sourced or derived from third parties or incorporated into the report by
+reference. \newpage \pagenumbering{arabic}
 
 # Summary `r is_new[["regional"]]`
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Quarto enables you to weave together content and executable code into a
+finished document. To learn more about Quarto see <https://quarto.org>.
 
 ```{r}
-test_text <- "\\huge{This is some huge text}"
+1 + 1
 ```
-`r test_text`
 
 # Table test
 

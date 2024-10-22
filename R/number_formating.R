@@ -1,27 +1,27 @@
 # Number formatters
 comma <- function(val, suffix = NULL, add_sign = FALSE, decimal = 2){
-  
+
   if(add_sign){
     signs <- ifelse(sign(val) == -1L, "-", "+")
     val <- abs(val)
   } else {
     signs <- NULL
   }
-  
-  
+
+
   out <- format(
-    round(val, decimal), 
-    justify = "none", 
-    big.mark = ",", 
+    round(val, decimal),
+    justify = "none",
+    big.mark = ",",
     width = 0
   )
-  
+
   paste0(
-    signs, 
-    gsub(" ", "", out), 
+    signs,
+    gsub(" ", "", out),
     suffix
   )
-  
+
 }
 
 format_percent <- function(val, add_sign = FALSE){
@@ -45,14 +45,14 @@ format_any <- function(val, form = "number", add_sign = FALSE){
     form == "PERCENT", format_percent(val, add_sign),
     form == "STOCK"  , format_number(val, add_sign),
     form == "FLOW"   , format_number(val, add_sign),
-    form == "PPT"    , comma(val, ppt_abbr, add_sign, 1),
+    form == "PPT"    , comma(val, NULL, add_sign, 1),
     TRUE             , comma(val, NULL, add_sign)
   )
 }
 
 ppt_abbr <- paste(
   abbr(
-    class = "text-decoration-none", 
+    class = "text-decoration-none",
     title="Percentage points",
     "&nbsp;ppt"
   ),

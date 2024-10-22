@@ -7,7 +7,9 @@ make_table <- function(
     highlight_rows,
     up_is_good,
     smoothing = NULL,
-    notes = NULL
+    notes = NULL,
+    positive_colour = "#ccefd9",
+    negative_colour = "#f7ccd6"
 ){
 
   # Collapse caption
@@ -99,6 +101,7 @@ make_table <- function(
 
   sparktext[, alt := paste(name, movement)]
 
+
   # Get interval dates
   breaks <- c(
     current = df[, max(date)],
@@ -107,6 +110,32 @@ make_table <- function(
     covid   = as.Date("2019-03-01"),
     govt    = as.Date("2014-11-01")
   )
+
+  breaks_labels <- c(
+    current = sprintf("\\textbf{%s}", format(breaks["current"], "%b %Y")),
+    last = sprintf(
+      "\\textbf{One %s change} \\small{%s}",
+      tolower(interval),
+      format(breaks["last"], "%b %Y")
+    ),
+    year = sprintf(
+      "\\textbf{One year change} \\small{%s}",
+      format(breaks["year"], "%b %Y")
+    ),
+    covid = sprintf(
+      "\\textbf{Change since COVID‑19} \\small{%s}",
+      format(breaks["covid"], "%b %Y")
+    ),
+    govt = sprintf(
+      "\\textbf{Change during government} \\small{%s}",
+      format(breaks["govt"], "%b %Y")
+    )
+  )
+
+  if(!all(names(breaks) %in% names(breaks_labels))){
+    stop("Please ensure all breaks have a label in breaks_labels")
+  }
+
 
   # Generate deltas
   deltas <- df[date %in% breaks]
@@ -136,8 +165,8 @@ make_table <- function(
     (names(breaks)) := lapply(.SD, \(x){
       fifelse(
         (x >= 0 & up_is_good) | (x <= 0 & !up_is_good),
-        "table-success",
-        "table-danger"
+        positive_colour,
+        negative_colour
         )
     }),
     .SDcols = names(breaks)
@@ -162,154 +191,30 @@ make_table <- function(
     .SDcols = diff_cols
   ]
   deltas[, data_type := NULL]
+  deltas[]
 
 
-  # Define top and bottom rows
-  top_row <- series_ids[1]
-  bottom_row <- series_ids[length(series_ids)]
-
-
-  # Convert to HTML table
-  tdeltas <- as.data.table(t(deltas))
-
-  rows <- sapply(tdeltas, function(x){
-    row_title     <- row_headers[match(x[1], series_ids)]
-    row_content   <- x[2:length(x)]
-    row_highlight <- highlight_rows[match(row_title, row_headers)]
-    alt_text      <- sparktext$alt[match(x[1], sparktext$series_id)]
-    row_classes   <- backgrounds[series_id == x[1], bg]
-    is_top        <- x[1] == top_row
-    is_bottom     <- x[1] == bottom_row
-
-    if(row_highlight & is_bottom){
-      tr(
-        class = "border-top border-bottom",
-        th(row_title, scope = "row"),
-        td(
-          img(
-            src = paste0("./sparklines/", table_name, "/", x[1], ".svg"),
-            alt = alt_text,
-            class = "img-fluid sparkline float-start"
-            )
-          ),
-        mapply(td, row_content, class = row_classes)
-      )
-    } else if(row_highlight){
-      tr(
-        class = "border-top",
-        th(row_title, scope = "row"),
-        td(
-          img(
-            src = paste0("./sparklines/", table_name, "/", x[1], ".svg"),
-            alt = alt_text,
-            class = "img-fluid sparkline float-start"
-          )
-        ),
-        mapply(td, row_content, class = row_classes)
-      )
-    } else if(is_top){
-      tr(
-        class = "subrow border-top",
-        th(row_title, scope = "row"),
-        td(
-          img(
-            src = paste0("./sparklines/", table_name, "/", x[1], ".svg"),
-            alt = alt_text,
-            class = "img-fluid sparkline float-start"
-          )
-        ),
-        mapply(td, row_content, class = row_classes)
-      )
-    } else if(is_bottom){
-      tr(
-        class = "subrow border-bottom",
-        th(row_title, scope = "row"),
-        td(
-          img(
-            src = paste0("./sparklines/", table_name, "/", x[1], ".svg"),
-            alt = alt_text,
-            class = "img-fluid sparkline float-start"
-          )
-        ),
-        mapply(td, row_content, class = row_classes)
-      )
-    } else {
-      tr(
-        class = "subrow",
-        th(row_title, scope = "row"),
-        td(
-          img(
-            src = paste0("./sparklines/", table_name, "/", x[1], ".svg"),
-            alt = alt_text,
-            class = "img-fluid sparkline float-start"
-          )
-        ),
-        mapply(td, row_content, class = row_classes)
-      )
-    }
-
-  })
-
-  rows <- tbody(rows)
-
-  header <- thead(
-    td(""),
-    th(
-      class = "text-start",
-      scope = "col",
-      "Recent trend",
-      br(),
-      small(
-        class = "text-muted p-0",
-        "Last 3 years"
-      )
-    ),
-    th(
-      scope = "col",
-      "Latest figures",
-      br(),
-      small(
-        class = "text-muted p-0",
-        format(breaks["current"], "%b&nbsp;%Y")
-        )
-    ),
-    th(
-      scope = "col",
-      paste("One", tolower(interval), "change"),
-      br(),
-      small(
-        class = "text-muted p-0",
-        format(breaks["last"], "%b&nbsp;%Y")
-      )
-    ),
-    th(
-      scope = "col",
-      "One year change",
-      br(),
-      small(
-        class = "text-muted p-0",
-        format(breaks["year"], "%b&nbsp;%Y")
-      )
-    ),
-    th(
-      scope = "col",
-      "Change since COVID&#8209;19",
-      br(),
-      small(
-        class = "text-muted p-0",
-        format(breaks["covid"], "%b&nbsp;%Y")
-      )
+  # latex preamble
+  table_start <- c(
+    "\\begin{table}[!htbp]",
+    "\\centering",
+    sprintf("\\ref{%s}", table_name),
+    sprintf("\\label{%s}", table_name),
+    sprintf("\\caption{%s}", notes),
+    sprintf(
+      "\\begin{tabular}{@{\\extracolsep{5pt}} lc%s}",
+      paste(rep("r", length(breaks)), collapse = "")
     )
+    )
+  table_colnames <- paste(breaks_labels, collapse = "&")
+  table_end <- c(
+    "\\end{tabular}",
+    "\\end{table}"
   )
 
-  # Return table
-  return(
-    table_tag(
-      caption(notes),
-      header,
-      rows
-    )
-  )
+
+  # Table row contents
+
 
 }
 

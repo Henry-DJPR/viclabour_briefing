@@ -42,11 +42,13 @@ format_number <- function(val, add_sign = FALSE){
 
 format_any <- function(val, form = "number", add_sign = FALSE){
   fcase(
-    form == "PERCENT", format_percent(val, add_sign),
-    form == "STOCK"  , format_number(val, add_sign),
-    form == "FLOW"   , format_number(val, add_sign),
-    form == "PPT"    , comma(val, NULL, add_sign, 1),
-    TRUE             , comma(val, NULL, add_sign)
+    form == "PERCENT" , format_percent(val, add_sign),
+    form == "STOCK"   , format_number(val, add_sign),
+    form == "FLOW"    , format_number(val, add_sign),
+    form == "PPT"     , comma(val, NULL, add_sign, 1),
+    form == "RELATIVE" & is.na(val), as.character(NA),
+    form == "RELATIVE", sprintf("(%s)", format_percent(val * 100, add_sign)),
+    TRUE              , comma(val, NULL, add_sign)
   )
 }
 

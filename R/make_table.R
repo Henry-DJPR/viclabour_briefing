@@ -40,6 +40,9 @@ make_table <- function(
   if(length(interval) > 1) stop(
     "Tables can only have one frequency (e.g. not monthly AND quarterly)"
   )
+  if(any(!(interval %in% c("Month", "Quarter")))) stop(
+    "make_table only supports monthly or quarterly data"
+  )
 
   # Generate sparkline colours
   colourgroup <- data.table(
@@ -102,6 +105,17 @@ make_table <- function(
   sparktext[, alt := paste(name, movement)]
 
 
+  # Detect series which are not up to date, note and correct for reporting
+  not_latest <- df[, .(date = max(date)), series_id]
+  not_latest <- not_latest[date != max(date)]
+  not_latest[, lag_months := month(max(df$date)) - month(date)]
+
+  df[
+    series_id %in% not_latest$series_id,
+    date := date +
+      months(not_latest$lag_months[match(series_id, not_latest$series_id)])
+  ]
+
   # Get interval dates
   breaks <- c(
     current = df[, max(date)],
@@ -135,6 +149,46 @@ make_table <- function(
 
   diff_cols <- names(breaks)[names(breaks) != "current"]
   deltas[, (diff_cols) := lapply(.SD, \(x) current - x), .SDcols = diff_cols]
+
+
+  # generate percentage change for stocks and flows
+  if(any(unique(df$data_type) %in% c("STOCK", "FLOW"))){
+
+    # filter out releveant series and generate relative growth
+    relative_grow <- df[data_type %in% c("STOCK", "FLOW")]
+    setkey(relative_grow, series_id, date)
+    relative_grow[, value := last(value) / value - 1, series_id]
+
+    # Pull out relevant dates and pivot
+    relative_grow <- relative_grow[date %in% breaks]
+    relative_grow[, date := names(breaks)[match(date, breaks)]]
+    relative_grow[, date := factor(date, levels = names(breaks))]
+    relative_grow <- dcast(
+      relative_grow,
+      series_id + data_type ~ date,
+      value.var = "value"
+    )
+    relative_grow[, `:=`(data_type = "RELATIVE", current = as.numeric(NA))]
+
+
+    # Bind to deltas, correct order and note relative growth rows
+    deltas <- rbind(deltas, relative_grow)
+    deltas[
+      ,
+      data_type := factor(
+        data_type,
+        levels = c("PERCENT", "STOCK", "FLOW", "RELATIVE")
+        )
+    ]
+    setkey(deltas, series_id, data_type)
+
+    # Correct highlight row index given new rows
+    highlight_series <- series_ids[highlight_rows]
+    highlight_rows <- deltas$series_id %in% highlight_series
+  }
+
+  relative_rows <- which(deltas$data_type == "RELATIVE")
+
 
 
   # Generate current backgrounds
@@ -177,16 +231,20 @@ make_table <- function(
   deltas[, current := format_any(current, data_type)]
   deltas[data_type == "PERCENT", data_type := "PPT"]
   deltas[,
-    (diff_cols) := lapply(.SD, format_any, form = data_type, add_sign = TRUE),
+    (diff_cols) := lapply(.SD, format_any, form = data_type, add_sign = FALSE),
     .SDcols = diff_cols
   ]
   deltas[, data_type := NULL]
-  deltas[]
+
+
+  # Replace row labels
+  deltas[, series_id := row_headers[match(series_id, series_ids)]]
 
 
   # flextable
   flex <- deltas |>
     flextable() |>
+    # Header
     set_header_labels(values = c("", unname(row_header_2))) |>
     add_header_row(values = c("", row_header_1)) |>
     bold(i = 1, part = "header") |>
@@ -195,13 +253,30 @@ make_table <- function(
     bg(bg = "#222222", part = "header") |>
     hline(1, border = officer::fp_border("#222222"), part = "header") |>
     align(j = 2:6, align = "right", part = "header") |>
+    padding(1, padding.bottom = 0, part = "header") |>
+    padding(2, padding.top = 0, part = "header") |>
+    # Body
     align(j = 2:6, align = "right", part = "body") |>
-    fit_to_width(max_width = 210 - 24 * 2, unit = "mm")
+    # font(j = -1, fontname = "Courier New", part = "body") |>
+    # Header rows
+    bold(which(highlight_rows)) |>
+    padding(which(!highlight_rows), 1, padding.left = 25) |>
+    # Relatiev rows
+    italic(relative_rows, -1) |>
+    color(relative_rows, -1, color = "#71797E") |>
+    fontsize(relative_rows, -1, size = 8) |>
+    padding(relative_rows, padding.top = 0) |>
+    padding(relative_rows - 1, padding.bottom = 0) |>
+    # Cell merging
+    merge_v(1) |>
+    # Page fit
+    fit_to_width(max_width = 50, unit = "cm")
+    # fit_to_width(max_width = 210 - 24 * 2, unit = "mm")
+
 
   flex
 
 
-  # Table row contents
 
 
 }

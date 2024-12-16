@@ -129,7 +129,7 @@ make_table <- function(
     current = "Current",
     last = sprintf("One %s change", tolower(interval)),
     year = "One year change",
-    covid = "Change since COVID‑19",
+    covid = "Change since COVID-19",
     govt = "Change during government"
   )
 
@@ -237,47 +237,128 @@ make_table <- function(
   deltas[, data_type := NULL]
 
 
+  # Add sparkline column
+  deltas[, trend := path_sparkline(table_name, series_id)]
+  setcolorder(deltas, after = "series_id", "trend")
+
+  # Generate footnote content
+  fnote_smoothing <-  as.data.table(
+    cbind(series_id = series_ids, smooth = smoothing)
+  )
+  fnote_smoothing <- fnote_smoothing[
+    smooth != 1,
+    .(
+      series_id,
+      text = sprintf(
+        "Smoothed using %s %s rolling average",
+        smooth,
+        tolower(interval)
+      )
+    )
+  ]
+
+  fnote_not_latest <- not_latest[
+    ,
+    .(
+      series_id,
+      text = sprintf("Latest data is from %s", format(date, "%B %Y"))
+    )
+  ]
+
+  fnotes <- rbind(fnote_not_latest, fnote_smoothing)
+  fnotes <- fnotes[
+    ,
+    .(row = which(deltas$series_id %in% series_id)),
+    .(series_id, text)
+  ]
+  fnotes <- split(fnotes, by = "text")
+
+
+  # Generate footnote function
+  attach_fnotes <- function(x){
+
+    l <- length(fnotes)
+    symb <- letters[1:l]
+
+    for(i in seq_len(l)){
+      x <- footnote(
+        x = x,
+        i = fnotes[[i]]$row,
+        j = 1,
+        value = as_paragraph(fnotes[[i]]$text[1]),
+        ref_symbols = symb[i],
+        inline = T,
+        sep = ". "
+      )
+    }
+
+    return (x)
+  }
+
+
   # Replace row labels
   deltas[, series_id := row_headers[match(series_id, series_ids)]]
 
 
   # flextable
+
+  fp_border_default(color = "#222222")
+
+
   flex <- deltas |>
     flextable() |>
     # Header
-    set_header_labels(values = c("", unname(row_header_2))) |>
-    add_header_row(values = c("", row_header_1)) |>
+    set_header_labels(values = c("", "Past three years", unname(row_header_2))) |>
+    add_header_row(values = c("", "Trend", row_header_1)) |>
+    # set_header_labels(values = c("", unname(row_header_2))) |>
+    # add_header_row(values = c("", row_header_1)) |>
     bold(i = 1, part = "header") |>
     color(color = "#FFFFFF", part = "header") |>
-    fontsize(i = 2, size = 10, part = "header") |>
+    fontsize(i = 2, size = 8, part = "header") |>
     bg(bg = "#222222", part = "header") |>
-    hline(1, border = officer::fp_border("#222222"), part = "header") |>
-    align(j = 2:6, align = "right", part = "header") |>
-    padding(1, padding.bottom = 0, part = "header") |>
-    padding(2, padding.top = 0, part = "header") |>
+    hline(1, border = officer::fp_border("#222222", style = "none"), part = "header") |>
+    align(j = 2:7, align = "right", part = "header") |>
+    # align(j = 2:6, align = "right", part = "header") |>
+    padding(1, padding.bottom = 0, padding.top = 8, part = "header") |>
+    padding(2, padding.bottom = 8, padding.top = 3, part = "header") |>
+    valign(i = 1, valign = "bottom", part = "header") |>
+    valign(i = 2, valign = "top", part = "header") |>
+    fontsize(size = 10, part = "all") |>
     # Body
-    align(j = 2:6, align = "right", part = "body") |>
-    # font(j = -1, fontname = "Courier New", part = "body") |>
+    align(j = 3:7, align = "right", part = "body") |>
+    fontsize(size = 10) |>
+    # align(j = 2:6, align = "right", part = "body") |>
+    valign(valign = "top", part = "body") |>
     # Header rows
     bold(which(highlight_rows)) |>
     padding(which(!highlight_rows), 1, padding.left = 25) |>
-    # Relatiev rows
+    padding(
+      i = which(highlight_rows),
+      j = NULL,
+      padding.top = 20
+    ) |>
+    # Relative rows
     italic(relative_rows, -1) |>
     color(relative_rows, -1, color = "#71797E") |>
     fontsize(relative_rows, -1, size = 8) |>
-    padding(relative_rows, padding.top = 0) |>
+    padding(relative_rows, padding.top = 3) |>
     padding(relative_rows - 1, padding.bottom = 0) |>
+    # Footnotes
+    attach_fnotes() |>
     # Cell merging
     merge_v(1) |>
+    merge_v(2) |>
+    # Image column
+    colformat_image(j= 2, width = 2 / 2.54, height = 0.6 / 2.54) #|>
     # Page fit
-    fit_to_width(max_width = 50, unit = "cm")
+    # autofit()
+    # fit_to_width(max_width = 50, unit = "cm")
     # fit_to_width(max_width = 210 - 24 * 2, unit = "mm")
 
 
-  flex
-
-
-
+  # Write table
+  saveRDS(flex, path_flextable(table_name))
+  return(NULL)
 
 }
 

@@ -15,7 +15,7 @@ library(jsonlite)
 library(xml2)
 library(openxlsx)
 library(fst)
-library(flextable)
+library(gt)
 
 
 # Parse table index
@@ -94,7 +94,7 @@ if(update_briefing | force_refresh){
   lapply(
     table_list,
     \(x){
-      make_table(
+      make_table_gt(
         table_name = x$table_name[1],
         series_ids = x$series_id,
         row_headers = x$name,

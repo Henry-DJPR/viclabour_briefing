@@ -3,8 +3,11 @@ title: "DJSIR Jobs Summary"
 author: "DJSIR EPPC Data + Analytics"
 date: "`r Sys.Date()`"
 pdf-engine: xelatex
+execute:
+  echo: false
 format:
   pdf: 
+    keep-tex: true
     documentclass: report
     include-in-header: "assets/preamble.tex"
     papersize: a4
@@ -20,6 +23,12 @@ format:
 
 ```{r}
 #| echo: false
+#| output: false
+
+# Load functions
+library(flextable)
+fp_border_default(color = "#222222")
+source("R/util.R")
 
 # Identify release information
 release_month <- month.name[10]
@@ -82,7 +91,15 @@ test_text <- "\\huge{This is some huge text}"
 ```
 `r test_text`
 
-# Table test
+# Employment summary
+```{r}
+#| label: tbl-overview
+#| tbl-cap: "Employment overview"
+
+tbl_sum <- readRDS(path_flextable("Overview"))
+gt::as_latex(tbl_sum)
+```
+
 
 # Forward release schedule
 

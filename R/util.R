@@ -13,11 +13,15 @@ p_load <- function(...){
 # Path helpers
 path_asset <- function(x) normalizePath(file.path("./assets", x))
 path_sparkline <- function(name, x) {
+  x <- gsub("_", "", x)
   if(!dir.exists(paste0("./assets/sparklines/", name))){
     dir.create(paste0("./assets/sparklines/", name))
   }
+  file.path("./assets/sparklines", name, paste0(x, ".pdf"))
+}
+path_flextable <- function(name) {
   normalizePath(
-    file.path("./assets/sparklines", name, paste0(x, ".svg")),
+    file.path("./assets/flextable", paste0(name, ".rds")),
     mustWork = F
   )
 }
@@ -146,3 +150,5 @@ tstrsplit_factor <- function(fac, split){
   split <- data.table::tstrsplit(lev, split = split)
   lapply(split, function(x) x[ind])
 }
+
+

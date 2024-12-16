@@ -31,14 +31,14 @@ format_percent <- function(val, add_sign = FALSE){
 format_number <- function(val, add_sign = FALSE){
   val_abs <- abs(val)
   fcase(
-    val_abs >= 3e09, comma(val / 1e09, "b", add_sign, 0),
-    val_abs >= 1e09, comma(val / 1e09, "b", add_sign, 1),
-    val_abs >= 2e06, comma(val / 1e06, "m", add_sign, 0),
-    val_abs >= 1e05, comma(val / 1e06, "m", add_sign, 1),
-    val_abs >= 2e03, comma(val / 1e03, "k", add_sign, 0),
-    val_abs <  2e03, comma(val,       NULL, add_sign, 0)
+    val_abs >= 1e09, comma(val / 1e09, "b", add_sign, 2),
+    val_abs >= 1e06, comma(val / 1e06, "m", add_sign, 2),
+    val_abs >= 1e05, comma(val / 1e03, "k", add_sign, 2),
+    val_abs >= 1e03, comma(val / 1e03, "k", add_sign, 2),
+    val_abs <  1e03, comma(val,       NULL, add_sign, 0)
   )
 }
+
 
 format_any <- function(val, form = "number", add_sign = FALSE){
   fcase(

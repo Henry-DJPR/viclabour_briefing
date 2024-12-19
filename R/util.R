@@ -19,9 +19,17 @@ path_sparkline <- function(name, x) {
   }
   file.path("./assets/sparklines", name, paste0(x, ".pdf"))
 }
+
 path_flextable <- function(name) {
   normalizePath(
     file.path("./assets/flextable", paste0(name, ".rds")),
+    mustWork = F
+  )
+}
+
+path_latex_table <- function(name) {
+  normalizePath(
+    file.path("./assets/latex_table", paste0(name, ".tex")),
     mustWork = F
   )
 }

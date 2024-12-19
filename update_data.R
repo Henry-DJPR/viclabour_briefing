@@ -15,7 +15,6 @@ library(jsonlite)
 library(xml2)
 library(openxlsx)
 library(fst)
-library(gt)
 
 
 # Parse table index

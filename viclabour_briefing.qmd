@@ -2,7 +2,7 @@
 title: "DJSIR Jobs Summary"
 author: "DJSIR EPPC Data + Analytics"
 date: "`r Sys.Date()`"
-pdf-engine: xelatex
+pdf-engine: lualatex
 execute:
   echo: false
 format:
@@ -26,8 +26,6 @@ format:
 #| output: false
 
 # Load functions
-library(flextable)
-fp_border_default(color = "#222222")
 source("R/util.R")
 
 # Identify release information
@@ -92,13 +90,15 @@ test_text <- "\\huge{This is some huge text}"
 `r test_text`
 
 # Employment summary
-```{r}
-#| label: tbl-overview
-#| tbl-cap: "Employment overview"
+\begin{table}[H]
+\begin{tabular}{l r r r r r r}
+\hline
+ & \textbf{Trend} & \textbf{Current} & \textbf{One month change} & \textbf{One year change} & \textbf{Change since COVID-19} & \textbf{Change during government} \\
+ & \small{last 3 years} & \small{Sep 2024} & \small{Aug 2024} & \small{Sep 2023} & \small{Mar 2019} & \small{Nov 2014} \\
+\hline
+\end{tabular}
+\end{table}
 
-tbl_sum <- readRDS(path_flextable("Overview"))
-gt::as_latex(tbl_sum)
-```
 
 
 # Forward release schedule

@@ -57,13 +57,13 @@ tbls <- readRDS("assets/report_tables.RDS")
       \begin{flushright}
         \color{black}
         \vspace*{10.65cm}
-        {\Huge\textbf{DJSIR Jobs Summary}}
+        {\Huge DJSIR Jobs Summary}
         \linebreak
         \linebreak
-        {\large \textbf{`r subtitle`}}
+        {\large `r subtitle`}
         \linebreak
         \linebreak
-        \textbf{`r format(Sys.Date(), "%e %B %Y")`}
+        `r format(Sys.Date(), "%e %B %Y")`
         \vfill
       \end{flushright}
     \end{varwidth}
@@ -90,15 +90,11 @@ test_text <- "\\huge{This is some huge text}"
 `r test_text`
 
 # Employment summary
-\begin{table}[H]
-\begin{tabular}{l r r r r r r}
-\hline
- & \textbf{Trend} & \textbf{Current} & \textbf{One month change} & \textbf{One year change} & \textbf{Change since COVID-19} & \textbf{Change during government} \\
- & \small{last 3 years} & \small{Sep 2024} & \small{Aug 2024} & \small{Sep 2023} & \small{Mar 2019} & \small{Nov 2014} \\
-\hline
-\end{tabular}
-\end{table}
+<!-- \newgeometry{top=0mm, bottom=5mm, left=6mm, right=6mm} -->
 
+\include{./assets/latex_table/Overview.tex}
+
+<!-- \restoregeometry -->
 
 
 # Forward release schedule

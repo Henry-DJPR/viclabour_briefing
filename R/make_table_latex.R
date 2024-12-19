@@ -301,6 +301,15 @@ make_table <- function(
 
 
   # latex table
+  latex_header_1 <- sprintf("\\textbf{%s}", c("Trend", row_header_1))
+  latex_header_2 <- sprintf("\\small{%s}", c("Last 3 years", row_header_2))
+
+  latex_header <- paste(latex_header_1, latex_header_2, sep = " \\\\ ")
+  latex_header <- paste0(
+    "  & \\thead[r]{",
+    paste0(latex_header, collapse = "} & \\thead[r]{"),
+    "} \\\\"
+  )
 
   tab_out <- c(
 
@@ -310,16 +319,7 @@ make_table <- function(
 
     # Header
     r"--(\hline)--",
-    paste0(
-      " & \\textbf{",
-      paste0(c("Trend", row_header_1), collapse = "} & \\textbf{") ,
-      "} \\\\"
-    ),
-    paste0(
-      " & \\small{",
-      paste0(c("last 3 years", row_header_2), collapse = "} & \\small{") ,
-      "} \\\\"
-    ),
+    latex_header,
     r"--(\hline)--",
 
     # Fin

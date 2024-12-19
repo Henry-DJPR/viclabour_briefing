@@ -300,11 +300,13 @@ make_table <- function(
   deltas[, series_id := row_headers[match(series_id, series_ids)]]
 
 
-  # latex table
+  # latex table header
+  ## Split long header on last space and break/resume bold text
   latex_header_1 <- sub("^(.*)\\s(.*)$", "\\1} \\\\\\\\ \\\\textbf{\\2", row_header_1)
+  ## Format headers as bold and small
   latex_header_1 <- sprintf("\\textbf{%s}", c("Trend", latex_header_1))
   latex_header_2 <- sprintf("\\small{%s}", c("Last 3 years", row_header_2))
-
+  ## Combine with linebreak and concatenate with \thead and &
   latex_header <- paste(latex_header_1, latex_header_2, sep = " \\\\ ")
   latex_header <- paste0(
     "  & \\thead[r]{",
@@ -312,6 +314,8 @@ make_table <- function(
     "} \\\\"
   )
 
+
+  # Generate latex output table
   tab_out <- c(
 
     # Table start
@@ -322,6 +326,10 @@ make_table <- function(
     r"--(\hline)--",
     latex_header,
     r"--(\hline)--",
+
+    # Rows
+
+
 
     # Fin
     r"--(\end{tabular})--",

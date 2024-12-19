@@ -12,7 +12,7 @@ format:
     include-in-header: "assets/preamble.tex"
     papersize: a4
     toc: false
-    latex-auto-install: true
+    latex-auto-install: false
     geometry:
     - top=20mm
     - bottom=24mm
@@ -89,9 +89,8 @@ test_text <- "\\huge{This is some huge text}"
 ```
 `r test_text`
 
-# Employment summary
 <!-- \newgeometry{top=0mm, bottom=5mm, left=6mm, right=6mm} -->
-
+# Employment summary
 \include{./assets/latex_table/Overview.tex}
 
 <!-- \restoregeometry -->

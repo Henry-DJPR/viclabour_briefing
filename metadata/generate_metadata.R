@@ -1,20 +1,17 @@
-# Generates a table of reference time series ids. 
+# Generates a table of reference time series ids.
 # This table shortcuts the need to check all time series individually
-# Also generates a table of abs timeseries workbook urls and the series they 
+# Also generates a table of abs timeseries workbook urls and the series they
 # contain to shortcut redownloading from the timeseries directory
 
-# Ensure this code is being run in the correct directory (not root)
-if(basename(getwd()) != "R") setwd(normalizePath("./R"))
 
-
-# Set options 
+# Set options
 options(repos = structure(c(CRAN="http://cran.rstudio.com/")))
 options(timeout = 120)
 
 
-# Load in custom functions (occurs after package management as some objects do 
+# Load in custom functions (occurs after package management as some objects do
 # not lazy load packages)
-lapply(list.files("R", full.names = TRUE), source)
+lapply(list.files("R", full.names = TRUE), source, echo = F, verbose = F)
 
 
 # Load packages. Only packages with minimal dependencies. Tidyverse banned.
@@ -90,7 +87,7 @@ lookup <- abs_ts_lookup(cat_no = c("6202.0", "6291.0.55.001", "6354.0"))
 setDT(lookup)
 
 
-# If there are series across catalogues, ensure we're only using the workbooks 
+# If there are series across catalogues, ensure we're only using the workbooks
 # which update first
 lookup[, is_latest := release_date == max(release_date), series_id]
 lookup <- lookup[is_latest == T]

@@ -1,5 +1,7 @@
+% No mote titles - Got a custom one
 \AtBeginDocument{\let\maketitle\relax}
 
+% packages
 \usepackage{xcolor}
 \usepackage{fontspec}
 \usepackage{eso-pic}
@@ -10,16 +12,21 @@
 \usepackage{tcolorbox}
 \usepackage{makecell}
 \usepackage{adjustbox}
+\usepackage{titlesec}
 
+% setup for packages
 \tcbuselibrary{most}
+\renewcommand\cellgape{\Gape[4pt]}
 
-% \setmainfont{VIC-Regular.ttf}
+% fonts
 \setmainfont{VIC-Regular.ttf}[
 BoldFont = ./assets/VIC-Bold.ttf ,
 ItalicFont = ./assets/VIC-Italic.ttf,
 BoldItalicFont = ./assets/VIC-BoldItalic.ttf,
 ]
 
+
+% Branding pics
 \newcommand\BackgroundPic{%
 \put(0,0){%
 \parbox[b][\paperheight]{\paperwidth}{%
@@ -35,6 +42,7 @@ BoldItalicFont = ./assets/VIC-BoldItalic.ttf,
   }
 }
 
+% New badge
 \newtcbox{\badge}[1][green]{
   on line,
   arc=2pt,
@@ -47,5 +55,32 @@ BoldItalicFont = ./assets/VIC-BoldItalic.ttf,
   right=6pt,
   top=2pt,
   bottom=2pt
+}
+
+
+
+% Default chapter format
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries} % Default formatting
+    {}                         % Label
+    {0pt}                      % Space between label and title
+    {\Huge}                    % Title text style
+
+\titlespacing*{\chapter}{0pt}{50pt}{40pt} % Default spacing: 50pt before, 40pt after
+
+
+% custom small space title
+\newcommand{\smallspacechapter}[1]{
+  {
+    \titleformat{\chapter}[display]
+        {\normalfont\huge\bfseries} % Custom formatting
+        {}                          % Label
+        {0pt}                       % Space between label and title
+        {\Huge}                    % Title text style
+
+    \titlespacing*{\chapter}{0pt}{20pt}{20pt} % No spacing: 0pt before and after
+
+    \chapter{#1}
+  }
 }
 

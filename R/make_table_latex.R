@@ -1,6 +1,6 @@
 
 # Generate html table
-make_table <- function(
+make_table_latex <- function(
     table_name,
     series_ids,
     row_headers,
@@ -74,6 +74,17 @@ make_table <- function(
     writeLines(sparkline, path_sparkline(table_name, unique(series_id))),
     series_id
   ]
+
+
+  # Generate pdf sparklines
+  lapply(
+    path_sparkline(table_name, series_ids),
+    \(x){
+      out_path <- sub("svg$", "pdf", x)
+      rsvg::rsvg_pdf(x, out_path)
+    }
+  )
+
 
   # Generate sparkline alt text
   sparktext <- df[
@@ -191,42 +202,6 @@ make_table <- function(
 
 
 
-  # Generate current backgrounds
-  avg_3_year <- df[
-    date >= years_ago(max(date), 3),
-    .(avg  = mean(value)),
-    keyby = series_id
-  ]
-
-  backgrounds <- deltas[avg_3_year][,
-                                    `:=`(
-                                      up_is_good = up_is_good[match(series_id, series_ids)],
-                                      current = current - avg,
-                                      avg = NULL,
-                                      data_type = NULL
-                                    )
-  ][,
-    (names(breaks)) := lapply(.SD, \(x){
-      fifelse(
-        (x >= 0 & up_is_good) | (x <= 0 & !up_is_good),
-        positive_colour,
-        negative_colour
-      )
-    }),
-    .SDcols = names(breaks)
-  ][,
-    up_is_good := NULL
-  ]
-
-  backgrounds <- melt.data.table(
-    data = backgrounds,
-    id.vars = "series_id",
-    measure.vars = names(breaks),
-    variable.name = "date",
-    value.name = "bg"
-  )
-
-
   # format deltas
   deltas[, current := format_any(current, data_type)]
   deltas[data_type == "PERCENT", data_type := "PPT"]
@@ -238,8 +213,9 @@ make_table <- function(
 
 
   # Add sparkline column
-  deltas[, trend := path_sparkline(table_name, series_id)]
+  deltas[, trend := path_sparkline_pdf(table_name, series_id)]
   setcolorder(deltas, after = "series_id", "trend")
+
 
   # Generate footnote content
   fnote_smoothing <-  as.data.table(
@@ -274,28 +250,6 @@ make_table <- function(
   fnotes <- split(fnotes, by = "text")
 
 
-  # Generate footnote function
-  attach_fnotes <- function(x){
-
-    l <- length(fnotes)
-    symb <- letters[1:l]
-
-    for(i in seq_len(l)){
-      x <- footnote(
-        x = x,
-        i = fnotes[[i]]$row,
-        j = 1,
-        value = as_paragraph(fnotes[[i]]$text[1]),
-        ref_symbols = symb[i],
-        inline = T,
-        sep = ". "
-      )
-    }
-
-    return (x)
-  }
-
-
   # Replace row labels
   deltas[, series_id := row_headers[match(series_id, series_ids)]]
 
@@ -309,17 +263,63 @@ make_table <- function(
   ## Combine with linebreak and concatenate with \thead and &
   latex_header <- paste(latex_header_1, latex_header_2, sep = " \\\\ ")
   latex_header <- paste0(
-    "  & \\thead[r]{",
-    paste0(latex_header, collapse = "} & \\thead[r]{"),
+    "  & \\makecell[r]{",
+    paste0(latex_header, collapse = "} & \\makecell[r]{"),
     "} \\\\"
   )
+
+
+  # Latex header / nonheader rows
+  delta_matrix <- as.matrix(deltas)
+
+  if(any(highlight_rows)){
+    delta_matrix[highlight_rows, 3:ncol(deltas)] <-
+      sprintf("\\textbf{%s}", delta_matrix[highlight_rows, 3:ncol(deltas)])
+    delta_matrix[highlight_rows, 1] <-
+      sprintf("\\makecell[l]{\\textbf{%s}}", delta_matrix[highlight_rows, 1])
+    delta_matrix[!highlight_rows, 1] <-
+      sprintf("\\hspace{3mm}\\makecell[l]{%s}", delta_matrix[!highlight_rows, 1])
+  } else {
+    # Wrap first column in \makecell
+    delta_matrix[, 1] <- sprintf("\\makecell[l]{%s}", delta_matrix[, 1])
+  }
+
+  delta_matrix <- gsub("\\%", "\\\\%", delta_matrix)
+
+  # collapse relative rows
+  if(length(relative_rows) > 0){
+
+    delta_matrix[relative_rows, ] <-
+      sprintf("\\small{%s}", delta_matrix[relative_rows, ])
+
+    for(i in relative_rows){
+      delta_matrix[i - 1, 4:ncol(deltas)] <- paste0(
+        "\\makecell[r]{",
+        delta_matrix[i - 1, 4:ncol(deltas)],
+        " \\\\ ",
+        delta_matrix[i, 4:ncol(deltas)],
+        "}"
+      )
+    }
+
+    delta_matrix <- delta_matrix[-relative_rows, ]
+
+  }
+
+
+  # Latex images
+  delta_matrix[, 2] <- sprintf(
+    "\\makecell[r]{\\includegraphics[width=2.5cm]{%s}}",
+    delta_matrix[, 2]
+    )
+
 
 
   # Generate latex output table
   tab_out <- c(
 
     # Table start
-    r"--(\begin{table}[H])--",
+    r"--(\resizebox{\textwidth}{!}{)--",
     r"--(\begin{tabular}{l r r r r r r})--",
 
     # Header
@@ -328,13 +328,18 @@ make_table <- function(
     r"--(\hline)--",
 
     # Rows
-
+    apply(
+      X      = delta_matrix,
+      MARGIN = 1,
+      FUN    = \(x) paste(c(x), collapse = " & ")
+    ) |>
+      paste0(" \\\\"),
 
 
     # Fin
+    r"--(\hline)--",
     r"--(\end{tabular})--",
-    r"--(\end{table})--"
-    # r"--()--",
+    r"--(})--"
     # r"--()--",
     # r"--()--",
     # r"--()--"

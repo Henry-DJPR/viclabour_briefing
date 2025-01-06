@@ -3,6 +3,7 @@ check_latest_data <- function(series_ids, parse_method){
   # Adjust for parse_methods that produce more than on data series
   # Will need to ammend as data sources grow
   series_ids[parse_method == "abs_lfs_youth"] <- "abs_lfs_youth"
+  series_ids[parse_method == "abs_lfs_youth_region"] <- "abs_lfs_youth_region"
 
   # get reference time series IDs as not to make hundreds of API calls
   reference <- read.fst(

@@ -21,6 +21,9 @@ format:
     - heightrounded
 ---
 
+
+<!-- SETUP -->
+
 ```{r}
 #| echo: false
 #| output: false
@@ -43,11 +46,13 @@ is_new <- list(
   regional = "\\hfill \\badge{New}"
 )
 
-# Tables 
-tbls <- readRDS("assets/report_tables.RDS")
+
 ```
 
-<!-- title page -->
+
+
+
+<!-- TITLE PAGE -->
 
 ```{=tex}
 \begin{titlepage}
@@ -57,7 +62,7 @@ tbls <- readRDS("assets/report_tables.RDS")
       \begin{flushright}
         \color{black}
         \vspace*{10.65cm}
-        {\Huge DJSIR Jobs Summary}
+        {\Huge\bfseries DJSIR Jobs Summary}
         \linebreak
         \linebreak
         {\large `r subtitle`}
@@ -70,6 +75,9 @@ tbls <- readRDS("assets/report_tables.RDS")
   \end{flushright}
 \end{titlepage}
 ```
+
+
+
 <!-- TOC & Disclaimer page -->
 
 ```{=tex}
@@ -80,22 +88,53 @@ tbls <- readRDS("assets/report_tables.RDS")
 ```
 \copyright \enspace Department of Jobs, Skills, Industry and Regions, `r format(Sys.Date(), "%Y")` \newline \newline The content of this Victorian Government report is provided for information purposes only. No claim is made as to the accuracy or currency of any of the content in this report at any time. The Victorian Government and this agency (the Department of Jobs, Skills, Industry and Regions) do not accept any liability to any person for the information (or the use of such information) which is provided on this report, including information sourced or derived from third parties or incorporated into the report by reference. \newpage \pagenumbering{arabic}
 
-# Summary `r is_new[["regional"]]`
+
+
+
+
+
+# Talking points `r is_new[["regional"]]`
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
-```{r}
-test_text <- "\\huge{This is some huge text}"
-```
-`r test_text`
-
-<!-- \newgeometry{top=0mm, bottom=5mm, left=6mm, right=6mm} -->
-# Employment summary
-\include{./assets/latex_table/Overview.tex}
-
-<!-- \restoregeometry -->
 
 
-# Forward release schedule
 
-Some text here
+\smallspacechapter{Employment Summary}
+
+\vfill
+\input{./assets/latex_table/Overview.tex}
+\vfill
+
+
+\newpage
+\vspace*{1mm}
+\vfill
+
+## Sex
+
+\input{./assets/latex_table/Sex.tex}
+\vfill
+
+## State comparison
+
+\input{./assets/latex_table/StateUnemployment.tex}
+\vfill
+
+
+\smallspacechapter{Youth}
+
+Youth labour market data provides insights into headline figures. Youth labour force data is volatile therefore DJSIR smooths the data by using 12-month averages. While this assists in observing underlying trends, it makes large month-to-month changes in underlying conditions less apparent.
+\linebreak
+\linebreak
+
+\input{./assets/latex_table/Age.tex}
+
+\pagebreak
+\vspace*{1mm}
+\vfill
+
+## Youth by region 
+
+\input{./assets/latex_table/AgeRegion.tex}
+\vfill

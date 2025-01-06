@@ -78,10 +78,12 @@ read_abs_calendar <- function(
       rvest::html_attr("href") |>
       lapply(
         \(.x) if(is.na(.x)) .x else xml2::url_absolute(.x, base = next_page)
-      ) %>%
-      unlist() %>%
+      ) |>
+      unlist() |>
       as.character()
   }
 
-  data.table::rbindlist(paged_releases)
+  data.table::rbindlist(paged_releases)[
+    title %in% c("Labour Force, Australia", "Labour Force, Australia, Detailed")
+  ]
 }

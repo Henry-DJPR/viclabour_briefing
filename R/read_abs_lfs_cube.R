@@ -1,9 +1,9 @@
 # read ABS LFS cube
 read_abs_lfs_cube <- function(tables){
-  
+
   urls <- abs_lfs_cube_urls[tables]
   if(length(urls) != length(tables)) stop("Unknown LFS pivot tables found")
-  
+
   paths <- sapply(
     urls,
     \(x){
@@ -12,7 +12,7 @@ read_abs_lfs_cube <- function(tables){
       tmp
     }
   )
-  
+
   dt <- mapply(
     SIMPLIFY = F,
     path = paths,
@@ -21,9 +21,9 @@ read_abs_lfs_cube <- function(tables){
       sheets <- openxlsx::getSheetNames(path)
       sheets <- sheets[grepl("Data|data", sheets)]
       df <- mapply(
-        read_abs_lfs_cube_sheet, 
-        sheet = sheets, 
-        path = path, 
+        read_abs_lfs_cube_sheet,
+        sheet = sheets,
+        path = path,
         SIMPLIFY = F
         )
       df <- rbindlist(df)
@@ -32,7 +32,7 @@ read_abs_lfs_cube <- function(tables){
       df
     }
   )
-  
+
   rbindlist(dt)
 }
 
@@ -41,7 +41,7 @@ read_abs_lfs_cube_sheet <- function(path, sheet){
   # Parse and class
   df <- read.xlsx(path, sheet, startRow = 4, sep.names = " ")
   setDT(df)
-  
+
   # Determine date column & frequency
   date_col <- intersect(names(df), abs_lfs_cube_freq)
   new_freq <- names(abs_lfs_cube_freq)[match(date_col, abs_lfs_cube_freq)]
@@ -49,40 +49,40 @@ read_abs_lfs_cube_sheet <- function(path, sheet){
 
   # Fix dates
   df[, date := as.Date(date, origin = "1899-12-30")]
-  
+
   # Pivot numeric columns
   numeric_cols <- names(df)[sapply(df, is.numeric)]
   non_numeric_cols <- names(df)[!(names(df) %in% numeric_cols)]
-  
+
   df <- melt(
-    data = df, 
-    id.vars = non_numeric_cols, 
-    measure.vars = numeric_cols, 
+    data = df,
+    id.vars = non_numeric_cols,
+    measure.vars = numeric_cols,
     variable.name = "measure",
     value.name = "value"
     )
-  
+
   # add unit
   df[
-    , 
+    ,
     unit := names(abs_lfs_cube_units)[
       match(measure[1], abs_lfs_cube_units)[1]
       ],
     measure
     ]
-  
+
   # concatenate into series and series id
   concat_names <- names(df)[!(names(df) %in% c("date", "value", "unit"))]
   df[, series := do.call(paste, c(.SD, sep=";")), .SDcols = concat_names]
   df[, series_id := series]
   df[, (concat_names) := NULL]
-  
+
   # add frequency and series_type
   df[, freq := new_freq]
   df[, series_type := "Original"]
-  
+
   df
-  
+
 }
 
 
@@ -179,21 +179,21 @@ abs_lfs_cube_units <- c(
 
 read_abs_lfs_youth <- function(...){
   # acquire data and set up columns
-  lm1 <- read_abs_lfs_cube("LM1") 
+  lm1 <- read_abs_lfs_cube("LM1")
   lm1[
-    , 
+    ,
     c(
-      "sex", 
-      "age", 
-      "marital_status", 
-      "gcc_restofstate", 
+      "sex",
+      "age",
+      "marital_status",
+      "gcc_restofstate",
       "indicator"
       ) := tstrsplit_factor(series, split = ";")
     ]
-  
+
   # Filter for Vic
   lm1 <- lm1[gcc_restofstate %in% c("Greater Melbourne", "Rest of Vic.")]
-  
+
   # Aggregate years
   year_lookup <- c(
     "15-19 years" = "15-24",
@@ -208,17 +208,17 @@ read_abs_lfs_youth <- function(...){
     "60-64 years" = "55+",
     "65 years and over" = "55+"
   )
-  
+
   lm1[, age := as.integer(factor(age, levels = names(year_lookup)))]
   lm1[, age := year_lookup[age]]
-  
-  
+
+
   # rename indicators
   lm1[
     indicator %in% c("Employed full-time ('000)", "Employed part-time ('000)"),
     indicator := "Employed"
     ]
-  
+
   lm1[
     indicator %in% c(
       "Unemployed looked for full-time work ('000)",
@@ -226,63 +226,63 @@ read_abs_lfs_youth <- function(...){
       ),
     indicator := "Unemployed"
     ]
-  
+
   lm1[
     indicator == "Not in the labour force (NILF) ('000)",
     indicator := "NILF"
   ]
- 
+
   # Aggregate over simplified categories
   lm1_gcc <- lm1[
-    , 
-    .(value = sum(value)), 
+    ,
+    .(value = sum(value)),
     .(date, age, gcc_restofstate, indicator)
     ]
-  
+
   lm1_sex <- lm1[, .(value = sum(value)), .(date, age, sex, indicator)]
- 
-  
+
+
   # Calculate unemployment rate for GCC split
   lm1_gcc_unemp <- dcast(
-    data = lm1_gcc, 
-    formula = date + age + gcc_restofstate ~ indicator, 
+    data = lm1_gcc,
+    formula = date + age + gcc_restofstate ~ indicator,
     value.var = "value"
     )
-  
+
   lm1_gcc_unemp[, value := Employed / (Employed + Unemployed) * 100]
   lm1_gcc_unemp[, indicator := "Unemployment rate"]
   lm1_gcc_unemp[, c("Employed", "Unemployed", "NILF") := NULL]
-  
+
   lm1_gcc <- rbind(lm1_gcc, lm1_gcc_unemp, fill = T)
-  
-  
+
+
   # Calculate unemployment rate for sex split
   lm1_sex_unemp <- dcast(
-    data = lm1_sex, 
-    formula = date + age + sex ~ indicator, 
+    data = lm1_sex,
+    formula = date + age + sex ~ indicator,
     value.var = "value"
   )
-  
+
   lm1_sex_unemp[, value := Employed / (Employed + Unemployed) * 100]
   lm1_sex_unemp[, indicator := "Unemployment rate"]
   lm1_sex_unemp[, c("Employed", "Unemployed", "NILF") := NULL]
-  
-  lm1_sex <- rbind(lm1_gcc, lm1_gcc_unemp, fill = T)
-  
-  
+
+  lm1_sex <- rbind(lm1_sex, lm1_sex_unemp, fill = T)
+
+
   # generate series ids
   concat_names_gcc <- names(lm1_gcc)[!(names(lm1_gcc) %in% c("date", "value"))]
   lm1_gcc[, series := do.call(paste, c(.SD, sep="_")), .SDcols = concat_names_gcc]
   lm1_gcc[, series_id := series]
   lm1_gcc[, (concat_names_gcc) := NULL]
-  
+
   concat_names_sex <- names(lm1_sex)[!(names(lm1_sex) %in% c("date", "value"))]
   lm1_sex[, series := do.call(paste, c(.SD, sep="_")), .SDcols = concat_names_sex]
   lm1_sex[, series_id := series]
   lm1_sex[, (concat_names_sex) := NULL]
-  
-  
-  # bind and add in supplementary data 
+
+
+  # bind and add in supplementary data
   lm1 <- rbind(lm1_gcc, lm1_sex)
   lm1[
     ,
@@ -297,7 +297,113 @@ read_abs_lfs_youth <- function(...){
       cat_no = "6291.0.55.001"
     )
   ]
-  
+
   return(lm1)
+}
+
+
+read_abs_lfs_youth_region <- function(...){
+
+  # acquire data and set up columns
+  rm1 <- read_abs_lfs_cube("RM1")
+  rm1[
+    ,
+    c(
+      "sex",
+      "age",
+      "sa4",
+      "indicator"
+    ) := tstrsplit_factor(series, split = ";")
+  ]
+  rm1[
+    ,
+    c("sa4_code", "sa4_name") := tstrsplit_factor(
+      fac = sa4,
+      split = "(?<=\\d)\\s",
+      perl = TRUE)
+  ]
+
+
+  rm1_gcc <- merge(rm1, sa4_to_gcc_lookup, by = 'sa4_code')
+
+  # reclassify employment status
+  rm1_gcc[, indicator := ifelse(grepl("^Employed", indicator),
+                                "Employed",
+                                indicator)]
+  rm1_gcc[, indicator := gsub(" \\('000\\)", "", indicator)]
+
+  # reclassify age groups
+  age_class <- c("15-24 years" = "15-24",
+                 "25-34 years" = "25-54",
+                 "35-44 years" = "25-54",
+                 "45-54 years" = "25-54",
+                 "55-64 years" = "55+",
+                 "65 years and over" = "55+")
+
+  rm1_gcc[, age := age_class[age] ]
+
+  # collapse to gcc, sa4, and state
+  gcc <- rm1_gcc[, .(value = sum(value)), by = .(date,
+                                                 age,
+                                                 indicator,
+                                                 area = gcc_restofstate)]
+
+  sa4 <- rm1_gcc[, .(value = sum(value)), by = .(date,
+                                                 age,
+                                                 indicator,
+                                                 area = sa4_name)]
+
+  state <- rm1_gcc[, .(value = sum(value)), by = .(date,
+                                                   age,
+                                                   sex,
+                                                   indicator,
+                                                   area = state)]
+
+  # recombine, remove duplicates, and calculate unemployment rate
+  emp <- data.table::rbindlist(
+    list(gcc, sa4, state),
+    fill = TRUE
+  ) |> unique()
+
+  emp[, `:=` (unit = "000",
+              data_type = "STOCK")]
+
+  uemp <- dcast(emp, date + age + sex + area + unit ~ indicator, value.var = 'value')
+
+  uemp[, value := 100 * (`Unemployed total` /
+                           (`Unemployed total` + Employed))]
+  uemp[, `:=` (indicator = "unemployment rate",
+               data_type = 'PERCENT',
+               unit = 'Percent')]
+
+  out <- data.table::rbindlist(
+    list(emp, uemp[, .(date, age, sex, indicator, area, value, data_type, unit)]),
+    fill = TRUE
+  )
+
+  out[, series := tolower(paste(age, sex, indicator, area, sep = "_"))]
+  out[, series := gsub("_na_", "_", series)]
+
+  out[, `:=` (series = series,
+              series_id = series,
+              series_type = "Original",
+              table_no = "RM1",
+              frequency = "Month",
+              unit = unit,
+              cat_no = "6291.0.55.001")]
+
+  return(
+    out[, .(date,
+            value,
+            series,
+            series_id,
+            series_type,
+            table_no,
+            data_type,
+            frequency,
+            unit,
+            cat_no)]
+  )
+
 }
 

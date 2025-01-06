@@ -56,7 +56,7 @@ if(nrow(to_update) > 0){
 # Update tables if required
 if(update_briefing | force_refresh){
 
-  message("Updating brefing componenets")
+  message("Updating brefing components")
 
   # parse jobs data
   jobs_data <- tryCatch(
@@ -93,7 +93,7 @@ if(update_briefing | force_refresh){
   lapply(
     table_list,
     \(x){
-      make_table_gt(
+      make_table_latex(
         table_name = x$table_name[1],
         series_ids = x$series_id,
         row_headers = x$name,

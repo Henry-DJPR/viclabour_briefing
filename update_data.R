@@ -9,7 +9,6 @@ lapply(list.files("R", full.names = TRUE), source, echo = F, verbose = F)
 
 
 # Load packages.
-library(lubridate)
 library(data.table)
 library(jsonlite)
 library(xml2)

@@ -269,9 +269,13 @@ make_table_latex <- function(
   )
 
 
-  # Latex header / nonheader rows
+  # Wrap first column
   delta_matrix <- as.matrix(deltas)
+  delta_matrix[, 1] <- stringr::str_wrap(delta_matrix[, 1], width = 20)
+  delta_matrix[, 1] <- stringr::str_replace_all(delta_matrix[, 1], "\\n", "\\\\\\\\")
 
+
+  # Latex header / nonheader rows
   if(any(highlight_rows)){
     delta_matrix[highlight_rows, 3:ncol(deltas)] <-
       sprintf("\\textbf{%s}", delta_matrix[highlight_rows, 3:ncol(deltas)])

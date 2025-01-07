@@ -9,7 +9,9 @@ lapply(list.files("R", full.names = TRUE), source, echo = F, verbose = F)
 
 
 # Load packages.
+library(stringr)
 library(data.table)
+library(lubridate)
 library(jsonlite)
 library(xml2)
 library(openxlsx)

@@ -18,6 +18,18 @@ make_table_latex <- function(
 
   # Get data
   df <- jobs_data[series_id %in% series_ids]
+  if(!all(series_ids %in% unique(jobs_data$series_id))) stop(
+    paste0(
+      "Error in table ",
+      table_name[1],
+      ": jobs data missing '",
+      paste0(
+        series_ids[!(series_ids %in% unique(jobs_data$series_id))],
+        collapse = "', '"
+        ),
+      "'"
+    )
+  )
 
 
   # Ensure correct data ordering
@@ -87,33 +99,33 @@ make_table_latex <- function(
 
 
   # Generate sparkline alt text
-  sparktext <- df[
-    date > years_ago(max(date), 3),
-    .(
-      current = last(value),
-      average = mean(value, na.rm = TRUE),
-      name = tolower(row_headers[match(series_id[1], series_ids)])
-    ),
-    series_id
-  ]
-
-  sparktext[
-    , `:=`(
-      name = fcase(
-        grepl("rate|ratio", name), paste("The", name, "is"),
-        grepl("persons", name), paste("The number of", name, "is"),
-        grepl("employed ", name), paste("The number of people", name, "is"),
-        rep(TRUE, .N), paste0(toupper(substring(name, 1,1)), substring(name, 2)," is")
-      ),
-      movement = fifelse(
-        current >= average,
-        "higher than average",
-        "lower than average"
-      )
-    )
-  ]
-
-  sparktext[, alt := paste(name, movement)]
+  # sparktext <- df[
+  #   date > years_ago(max(date), 3),
+  #   .(
+  #     current = last(value),
+  #     average = mean(value, na.rm = TRUE),
+  #     name = tolower(row_headers[match(series_id[1], series_ids)])
+  #   ),
+  #   series_id
+  # ]
+  #
+  # sparktext[
+  #   , `:=`(
+  #     name = fcase(
+  #       grepl("rate|ratio", name), paste("The", name, "is"),
+  #       grepl("persons", name), paste("The number of", name, "is"),
+  #       grepl("employed ", name), paste("The number of people", name, "is"),
+  #       rep(TRUE, .N), paste0(toupper(substring(name, 1,1)), substring(name, 2)," is")
+  #     ),
+  #     movement = fifelse(
+  #       current >= average,
+  #       "higher than average",
+  #       "lower than average"
+  #     )
+  #   )
+  # ]
+  #
+  # sparktext[, alt := paste(name, movement)]
 
 
   # Detect series which are not up to date, note and correct for reporting
@@ -132,8 +144,10 @@ make_table_latex <- function(
     current = df[, max(date)],
     last    = df[, max(date[date != max(date)])],
     year    = df[, years_ago(max(date), 1)],
-    covid   = as.Date("2019-03-01"),
-    govt    = as.Date("2014-11-01")
+    # covid   = as.Date("2019-03-01"),
+    covid   = df[, date[which.min(abs(date - as.Date("2019-03-01")))][1]],
+    # govt    = as.Date("2014-11-01")
+    govt    = df[, date[which.min(abs(date - as.Date("2014-11-01")))][1]]
   )
 
   row_header_1 <- c(
@@ -269,23 +283,38 @@ make_table_latex <- function(
   )
 
 
-  # Wrap first column
+  # Latex header / nonheader rows and first column wrapping
   delta_matrix <- as.matrix(deltas)
-  delta_matrix[, 1] <- stringr::str_wrap(delta_matrix[, 1], width = 20)
-  delta_matrix[, 1] <- stringr::str_replace_all(delta_matrix[, 1], "\\n", "\\\\\\\\")
+  wrap <- \(x) str_replace_all(
+    str_wrap(x, width = 20),
+    "\\n",
+    " \\\\\\\\ "
+  )
+  wrap_bf <- \(x) str_replace_all(
+    str_wrap(x, width = 20),
+    "\\n",
+    "} \\\\\\\\ \\\\textbf{"
+  )
 
-
-  # Latex header / nonheader rows
   if(any(highlight_rows)){
+
     delta_matrix[highlight_rows, 3:ncol(deltas)] <-
       sprintf("\\textbf{%s}", delta_matrix[highlight_rows, 3:ncol(deltas)])
-    delta_matrix[highlight_rows, 1] <-
-      sprintf("\\makecell[l]{\\textbf{%s}}", delta_matrix[highlight_rows, 1])
-    delta_matrix[!highlight_rows, 1] <-
-      sprintf("\\hspace{3mm}\\makecell[l]{%s}", delta_matrix[!highlight_rows, 1])
+
+    delta_matrix[highlight_rows, 1] <- sprintf(
+        "\\makecell[l]{\\textbf{%s}}",
+        wrap_bf(delta_matrix[highlight_rows, 1])
+    )
+
+    delta_matrix[!highlight_rows, 1] <- sprintf(
+      "\\hspace{3mm}\\makecell[l]{%s}",
+      wrap(delta_matrix[!highlight_rows, 1])
+    )
+
   } else {
-    # Wrap first column in \makecell
-    delta_matrix[, 1] <- sprintf("\\makecell[l]{%s}", delta_matrix[, 1])
+
+    delta_matrix[, 1] <- sprintf("\\makecell[l]{%s}", wrap(delta_matrix[, 1]))
+
   }
 
   delta_matrix <- gsub("\\%", "\\\\%", delta_matrix)
@@ -314,6 +343,7 @@ make_table_latex <- function(
   # Latex images
   delta_matrix[, 2] <- sprintf(
     "\\makecell[r]{\\includegraphics[width=2.5cm]{%s}}",
+    # "\\includegraphics[width=2.5cm]{%s}",
     delta_matrix[, 2]
     )
 
@@ -343,7 +373,10 @@ make_table_latex <- function(
     # Fin
     r"--(\hline)--",
     r"--(\end{tabular})--",
-    r"--(})--"
+    r"--(})--",
+    r"--()--",
+    r"--()--",
+    if(any(nchar(notes) > 0)){sprintf("\\small{%s}", notes)} else {" "}
     # r"--()--",
     # r"--()--",
     # r"--()--"

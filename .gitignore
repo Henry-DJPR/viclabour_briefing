@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-
+./assets/latex_table/
+./assets/sparklines/
 /.quarto/

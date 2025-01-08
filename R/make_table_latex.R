@@ -7,9 +7,7 @@ make_table_latex <- function(
     highlight_rows,
     up_is_good,
     smoothing = NULL,
-    notes = NULL,
-    positive_colour = "#ccefd9",
-    negative_colour = "#f7ccd6"
+    notes = NULL
 ){
 
   # Collapse caption

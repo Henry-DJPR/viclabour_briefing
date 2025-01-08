@@ -143,48 +143,91 @@ Youth labour market data provides insights into headline figures. Youth labour f
 
 # Metropolitan Melbourne
 
+\vfill
+
 ## Metropolitan unemployment rate by state
 
 \input{./assets/latex_table/MetroUnemployment.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Employment across Greater Melbourne
 
 \input{./assets/latex_table/RegionMetroEmployed.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Unemployed persons across Greater Melbourne
 
 \input{./assets/latex_table/RegionMetroUnemployed.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Unemployment rate across Greater Melbourne
 
 \input{./assets/latex_table/RegionMetroUnemployment.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Participation rate across Greater Melbourne
 
 \input{./assets/latex_table/RegionMetroParticipation.tex}
-
+\vfill
 
 # Regional Victoria
 
 ## Regional unemployment rate by state
 
 \input{./assets/latex_table/NonMetroUnemployment.tex}
+\pagebreak
+
+\ 
+\vfill
 
 ## Employment across regional Victoria
 
 \input{./assets/latex_table/RegionNonMetroEmployed.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Unemployed persons across regional Victoria
 
 \input{./assets/latex_table/RegionNonMetroUnemployed.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Unemployment rate across regional Victoria
 
 \input{./assets/latex_table/RegionNonMetroUnemployment.tex}
+\vfill
+\pagebreak
+
+\ 
+\vfill
 
 ## Participation rate across regional Victoria
 
 \input{./assets/latex_table/RegionNonMetroParticipation.tex}
+ 
+\vfill
 
 
 \smallspacechapter{Industry}

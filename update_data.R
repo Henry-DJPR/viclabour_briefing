@@ -25,7 +25,6 @@ indx <- fread("table_index.csv")
 
 # Check latest dates
 indx[, latest := check_latest_data(series_id, parse_method)]
-indx[, just_updated := is.na(last_updated) | latest > last_updated]
 
 
 # Pull out unique series to update

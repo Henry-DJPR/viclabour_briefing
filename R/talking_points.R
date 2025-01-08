@@ -94,7 +94,7 @@ make_talking_points <- function(jobs_data){
 
   # Format numbers
   fmt <- \(x, suffix){
-    formatted <- sapply(x, \(y) format(y, big.mark = ",", scientific = FALSE))
+    formatted <- sapply(x, \(y) format(abs(y), big.mark = ",", scientific = FALSE))
     if(length(suffix) == 1) suffix <- rep(suffix, length(x))
     ifelse(is.na(suffix), formatted, paste0(formatted, suffix))
   }
@@ -103,7 +103,7 @@ make_talking_points <- function(jobs_data){
     ,
     `:=`(
       old = fmt(old / scale, suffix),
-      new = fmt(old / scale, suffix),
+      new = fmt(new / scale, suffix),
       delta = fmt(delta / scale_delta, suffix_delta),
       relative_delta = fmt(relative_delta, "%")
     )

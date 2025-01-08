@@ -96,7 +96,8 @@ is_new <- list(
 
 # Talking points `r is_new[["regional"]]`
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+\input{./assets/talking_points/talking_points.tex}
+
 
 
 

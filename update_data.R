@@ -1,5 +1,6 @@
 # Set options
 force_refresh <- interactive()
+full_data_redownload <- FALSE
 options(repos = structure(c(CRAN="http://cran.rstudio.com/")))
 options(timeout = 120)
 
@@ -29,6 +30,9 @@ indx[, just_updated := is.na(last_updated) | latest > last_updated]
 
 # Pull out unique series to update
 to_update <- indx[just_updated == T, .N, .(series_id, parse_method)]
+if(full_data_redownload){
+  to_update <- indx[, .N, .(series_id, parse_method)]
+}
 
 
 # generate new data if required

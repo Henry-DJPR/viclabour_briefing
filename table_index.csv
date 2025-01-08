@@ -41,25 +41,25 @@ Age,Female youth unemployment rate,15-24_females_unemployment rate,abs_lfs_youth
 Age,Unemployed total,A84424688F,abs_ts,2024-12-12,TRUE,12,FALSE,"",FALSE
 Age,Youth participation rate,A84424692W,abs_ts,2024-12-12,TRUE,12,TRUE,"",FALSE
 Age,Participation rate - youth not in full-time study,A84424602F,abs_ts,2024-12-12,FALSE,12,TRUE,"",FALSE
-AgeRegion,Greater Melbourne youth unemployment rate,15-24_unemployment rate_greater melbourne,abs_lfs_youth_region,2024-12-19,TRUE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - Inner,15-24_unemployment rate_melbourne - inner,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,All series smoothed with a 12 month rolling average.,FALSE
-AgeRegion,Melbourne - Inner East,15-24_unemployment rate_melbourne - inner east,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - Inner South,15-24_unemployment rate_melbourne - inner south,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - North East,15-24_unemployment rate_melbourne - north east,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - North West,15-24_unemployment rate_melbourne - north west,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - Outer East,15-24_unemployment rate_melbourne - outer east,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - South East,15-24_unemployment rate_melbourne - south east,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Melbourne - West,15-24_unemployment rate_melbourne - west,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Mornington Peninsula,15-24_unemployment rate_mornington peninsula,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Regional Victoria youth unemployment rate,15-24_unemployment rate_rest of vic.,abs_lfs_youth_region,2024-12-19,TRUE,12,FALSE,"",FALSE
-AgeRegion,Ballarat,15-24_unemployment rate_ballarat,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Bendigo,15-24_unemployment rate_bendigo,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Geelong,15-24_unemployment rate_geelong,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Hume,15-24_unemployment rate_hume,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Latrobe - Gippsland,15-24_unemployment rate_latrobe - gippsland,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Shepparton,15-24_unemployment rate_shepparton,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Victoria - North West,15-24_unemployment rate_victoria - north west,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
-AgeRegion,Warrnambool and South West,15-24_unemployment rate_warrnambool and south west,abs_lfs_youth_region,2024-12-19,FALSE,12,FALSE,"",FALSE
+AgeRegion,Greater Melbourne youth unemployment rate,15-24_unemployment rate_greater melbourne,abs_lfs_youth_region,,TRUE,12,FALSE,"",
+AgeRegion,Melbourne - Inner,15-24_unemployment rate_melbourne - inner,abs_lfs_youth_region,,FALSE,12,FALSE,All series smoothed with a 12 month rolling average.,
+AgeRegion,Melbourne - Inner East,15-24_unemployment rate_melbourne - inner east,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - Inner South,15-24_unemployment rate_melbourne - inner south,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - North East,15-24_unemployment rate_melbourne - north east,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - North West,15-24_unemployment rate_melbourne - north west,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - Outer East,15-24_unemployment rate_melbourne - outer east,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - South East,15-24_unemployment rate_melbourne - south east,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Melbourne - West,15-24_unemployment rate_melbourne - west,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Mornington Peninsula,15-24_unemployment rate_mornington peninsula,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Regional Victoria youth unemployment rate,15-24_unemployment rate_rest of vic.,abs_lfs_youth_region,,TRUE,12,FALSE,"",
+AgeRegion,Ballarat,15-24_unemployment rate_ballarat,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Bendigo,15-24_unemployment rate_bendigo,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Geelong,15-24_unemployment rate_geelong,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Hume,15-24_unemployment rate_hume,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Latrobe - Gippsland,15-24_unemployment rate_latrobe - gippsland,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Shepparton,15-24_unemployment rate_shepparton,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Victoria - North West,15-24_unemployment rate_victoria - north west,abs_lfs_youth_region,,FALSE,12,FALSE,"",
+AgeRegion,Warrnambool and South West,15-24_unemployment rate_warrnambool and south west,abs_lfs_youth_region,,FALSE,12,FALSE,"",
 MetroUnemployment,Melbourne,A84600145K,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
 MetroUnemployment,Sydney,A84599623K,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE
 MetroUnemployment,Brisbane,A84600151F,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
@@ -162,9 +162,9 @@ Industry,Education and Training,A84601650T,abs_ts,2024-12-19,FALSE,,TRUE,"",FALS
 Industry,Health Care and Social Assistance,A84601671C,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE
 Industry,Arts and Recreation Services,A84601641R,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE
 Industry,Other Services,A84601716W,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE
-NonMetroUnemployment,Regional Vic.,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,TRUE
-NonMetroUnemployment,Regional NSW,A84599629X,abs_ts,2024-12-19,FALSE,3,FALSE,"",TRUE
-NonMetroUnemployment,Regional Qld,A84599785A,abs_ts,2024-12-19,FALSE,3,FALSE,"",TRUE
-NonMetroUnemployment,Regional WA,A84600247X,abs_ts,2024-12-19,FALSE,3,FALSE,"",TRUE
-NonMetroUnemployment,Regional SA,A84599719C,abs_ts,2024-12-19,FALSE,3,FALSE,"",TRUE
-NonMetroUnemployment,Regional Tas.,A84599635V,abs_ts,2024-12-19,FALSE,3,FALSE,"",TRUE
+NonMetroUnemployment,Regional Vic.,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE
+NonMetroUnemployment,Regional NSW,A84599629X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
+NonMetroUnemployment,Regional Qld,A84599785A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
+NonMetroUnemployment,Regional WA,A84600247X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
+NonMetroUnemployment,Regional SA,A84599719C,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE
+NonMetroUnemployment,Regional Tas.,A84599635V,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE

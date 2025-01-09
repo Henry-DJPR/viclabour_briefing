@@ -43,13 +43,12 @@ reference_month <- month.name[month(reference_date)]
 
 # Determine release type
 release_type <- Sys.getenv("update_type", "auto")
-release_type <- "headline"
 
 
 # Geneerate subtitle, chapter badges and TOC updated flags
 if(!(release_type %in% c("headline", "regional", "industry"))){
   
-  subtitle <- "Comprehensive data update"
+  subtitle <- "ABS data update"
   badge <- c()
   toc_updated <-c()
   
@@ -229,7 +228,7 @@ DJSIR smooths youth statistics using 12-month average to remove volatility prese
 \input{./assets/latex_table/RegionMetroParticipation.tex}
 \vfill
 
-# Regional Victoria `r badge["RegionNonMetroUnemployment"]`
+\chapter[Regional Victoria `r toc_updated["RegionNonMetroUnemployment"]`]{Regional Victoria `r badge["RegionNonMetroUnemployment"]`}
 
 \vfill
 
@@ -276,5 +275,5 @@ DJSIR smooths youth statistics using 12-month average to remove volatility prese
 \vfill
 
 
-\smallspacechapter[Industry `r badge["Industry"]`]{Industry `r badge["Industry"]`}
+\smallspacechapter[Industry `r toc_updated["Industry"]`]{Industry `r badge["Industry"]`}
 \input{./assets/latex_table/Industry.tex}

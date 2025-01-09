@@ -1,6 +1,6 @@
 
 # Generate html table
-make_table_latex <- function(
+make_table <- function(
     table_name,
     series_ids,
     row_headers,
@@ -24,7 +24,7 @@ make_table_latex <- function(
       paste0(
         series_ids[!(series_ids %in% unique(jobs_data$series_id))],
         collapse = "', '"
-        ),
+      ),
       "'"
     )
   )
@@ -137,6 +137,50 @@ make_table_latex <- function(
       months(not_latest$lag_months[match(series_id, not_latest$series_id)])
   ]
 
+
+  # Edit notes with not latest series
+  if(nrow(not_latest) > 0){
+    not_latest[, name := row_headers[match(series_id, series_ids)]]
+    not_latest_notes <- not_latest[
+      ,
+      .(
+        out = if(length(name) == 1){
+          paste0(
+            "Latest ",
+            sprintf("'%s'", name),
+            " data is from ",
+            format(date[1], "%b %Y.")
+          )
+        } else if(length(name) == 2){
+          paste0(
+            "Latest ",
+            paste0(sprintf("'%s'", name), collapse = " and "),
+            " data are from ",
+            format(date[1], "%b %Y.")
+          )
+        } else {
+          paste0(
+            "Latest ",
+            paste0(
+              c(
+                paste0(sprintf("'%s'", name[-length(name)]), collapse = ", "),
+                sprintf("'%s'", name[length(name)])
+              ),
+              collapse = " and "
+            ),
+            " data are from ",
+            format(date[1], "%b %Y.")
+          )
+        }
+
+      ),
+      date
+    ]
+
+    notes <- paste0(notes, paste0(not_latest_notes$out, collapse = " "))
+  }
+
+
   # Get interval dates
   breaks <- c(
     current = df[, max(date)],
@@ -230,40 +274,43 @@ make_table_latex <- function(
 
 
   # Generate footnote content
-  fnote_smoothing <-  as.data.table(
-    cbind(series_id = series_ids, smooth = smoothing)
-  )
-  fnote_smoothing <- fnote_smoothing[
-    smooth != 1,
-    .(
-      series_id,
-      text = sprintf(
-        "Smoothed using %s %s rolling average",
-        smooth,
-        tolower(interval)
-      )
-    )
-  ]
-
-  fnote_not_latest <- not_latest[
-    ,
-    .(
-      series_id,
-      text = sprintf("Latest data is from %s", format(date, "%B %Y"))
-    )
-  ]
-
-  fnotes <- rbind(fnote_not_latest, fnote_smoothing)
-  fnotes <- fnotes[
-    ,
-    .(row = which(deltas$series_id %in% series_id)),
-    .(series_id, text)
-  ]
-  fnotes <- split(fnotes, by = "text")
+  # fnote_smoothing <-  as.data.table(
+  #   cbind(series_id = series_ids, smooth = smoothing)
+  # )
+  # fnote_smoothing <- fnote_smoothing[
+  #   smooth != 1,
+  #   .(
+  #     series_id,
+  #     text = sprintf(
+  #       "Smoothed using %s %s rolling average",
+  #       smooth,
+  #       tolower(interval)
+  #     )
+  #   )
+  # ]
+  #
+  # fnote_not_latest <- not_latest[
+  #   ,
+  #   .(
+  #     series_id,
+  #     text = sprintf("Latest data is from %s", format(date, "%B %Y"))
+  #   )
+  # ]
+  #
+  # fnotes <- rbind(fnote_not_latest, fnote_smoothing)
+  # fnotes <- fnotes[
+  #   ,
+  #   .(row = which(deltas$series_id %in% series_id)),
+  #   .(series_id, text)
+  # ]
+  # fnotes <- split(fnotes, by = "text")
 
 
   # Replace row labels
   deltas[, series_id := row_headers[match(series_id, series_ids)]]
+
+
+  # Save workbook content
 
 
   # latex table header
@@ -300,8 +347,8 @@ make_table_latex <- function(
       sprintf("\\textbf{%s}", delta_matrix[highlight_rows, 3:ncol(deltas)])
 
     delta_matrix[highlight_rows, 1] <- sprintf(
-        "\\makecell[l]{\\textbf{%s}}",
-        wrap_bf(delta_matrix[highlight_rows, 1])
+      "\\makecell[l]{\\textbf{%s}}",
+      wrap_bf(delta_matrix[highlight_rows, 1])
     )
 
     delta_matrix[!highlight_rows, 1] <- sprintf(
@@ -343,7 +390,7 @@ make_table_latex <- function(
     "\\makecell[r]{\\includegraphics[width=2.5cm]{%s}}",
     # "\\includegraphics[width=2.5cm]{%s}",
     delta_matrix[, 2]
-    )
+  )
 
 
 

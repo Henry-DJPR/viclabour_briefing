@@ -111,7 +111,7 @@ if(update_briefing){
   lapply(
     table_list,
     \(x){
-      make_table_latex(
+      make_table(
         table_name = x$table_name[1],
         series_ids = x$series_id,
         row_headers = x$name,

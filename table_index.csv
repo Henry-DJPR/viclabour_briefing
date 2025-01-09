@@ -1,170 +1,170 @@
-table_name,name,series_id,parse_method,last_updated,highlight,smoothing_months,up_is_good,caption
-Overview,Unemployment rate,A84423354L,abs_ts,2024-12-12,TRUE,,FALSE,Youth figures are smoothed using a 12 month rolling average; regional figures are smoothed using a 3 month rolling average.
-Overview,Male unemployment rate,A84423242V,abs_ts,2024-12-12,FALSE,,FALSE,
-Overview,Female unemployment rate,A84423466F,abs_ts,2024-12-12,FALSE,,FALSE,
-Overview,Youth unemployment rate,A84424691V,abs_ts,2024-12-12,FALSE,12,FALSE,
-Overview,Regional unemployment rate,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,
-Overview,Unemployed persons,A84423350C,abs_ts,2024-12-12,FALSE,,FALSE,
-Overview,Employed persons,A84423349V,abs_ts,2024-12-12,TRUE,,TRUE,
-Overview,Employed full-time,A84423357V,abs_ts,2024-12-12,FALSE,,TRUE,
-Overview,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-12-12,FALSE,,TRUE,
-Overview,Male employment,A84423237A,abs_ts,2024-12-12,FALSE,,TRUE,
-Overview,Female employment,A84423461V,abs_ts,2024-12-12,FALSE,,TRUE,
-Overview,Youth employment,A84424687C,abs_ts,2024-12-12,FALSE,12,TRUE,
-Overview,Participation rate,A84423355R,abs_ts,2024-12-12,TRUE,,TRUE,
-Overview,Male participation rate,A84423243W,abs_ts,2024-12-12,FALSE,,TRUE,
-Overview,Female participation rate,A84423467J,abs_ts,2024-12-12,FALSE,,TRUE,
-Overview,Youth participation rate,A84424692W,abs_ts,2024-12-12,FALSE,12,TRUE,
-Overview,Monthly hours worked in all jobs,A84426256L,abs_ts,2024-12-12,TRUE,,TRUE,
-Overview,Underemployment rate,A85223450L,abs_ts,2024-12-12,TRUE,,FALSE,
-Overview,Underutilisation rate,A85223451R,abs_ts,2024-12-12,TRUE,,FALSE,
-Overview,Employment to population ratio,A84423356T,abs_ts,2024-12-12,TRUE,,TRUE,
-Sex,Male employment,A84423237A,abs_ts,2024-12-12,FALSE,,TRUE,
-Sex,Female employment,A84423461V,abs_ts,2024-12-12,FALSE,,TRUE,
-Sex,Male unemployed people,A84423238C,abs_ts,2024-12-12,FALSE,,FALSE,
-Sex,Female unemployed people,A84423462W,abs_ts,2024-12-12,FALSE,,FALSE,
-Sex,Male unemployment rate,A84423242V,abs_ts,2024-12-12,FALSE,,FALSE,
-Sex,Female unemployment rate,A84423466F,abs_ts,2024-12-12,FALSE,,FALSE,
-Sex,Male participation rate,A84423243W,abs_ts,2024-12-12,FALSE,,TRUE,
-Sex,Female participation rate,A84423467J,abs_ts,2024-12-12,FALSE,,TRUE,
-StateUnemployment,Australia,A84423050A,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,Victoria,A84423354L,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,New South Wales,A84423270C,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,Queensland,A84423284T,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,Western Australia,A84423326C,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,South Australia,A84423368A,abs_ts,2024-12-12,FALSE,,FALSE,
-StateUnemployment,Tasmania,A84423298F,abs_ts,2024-12-12,FALSE,,FALSE,
-Age,Youth employment,A84424687C,abs_ts,2024-12-12,TRUE,12,TRUE,All series smoothed with a 12 month rolling average.
-Age,Youth unemployment rate,A84424691V,abs_ts,2024-12-12,TRUE,12,FALSE,
-Age,Male youth unemployment rate,15-24_males_unemployment rate,abs_lfs_youth,2024-12-19,FALSE,12,FALSE,
-Age,Female youth unemployment rate,15-24_females_unemployment rate,abs_lfs_youth,2024-12-19,FALSE,12,FALSE,
-Age,Unemployed total,A84424688F,abs_ts,2024-12-12,TRUE,12,FALSE,
-Age,Youth participation rate,A84424692W,abs_ts,2024-12-12,TRUE,12,TRUE,
-Age,Participation rate - youth not in full-time study,A84424602F,abs_ts,2024-12-12,FALSE,12,TRUE,
-AgeRegion,Greater Melbourne youth unemployment rate,15-24_unemployment rate_greater melbourne,abs_lfs_youth_region,,TRUE,12,FALSE,
-AgeRegion,Melbourne - Inner,15-24_unemployment rate_melbourne - inner,abs_lfs_youth_region,,FALSE,12,FALSE,All series smoothed with a 12 month rolling average.
-AgeRegion,Melbourne - Inner East,15-24_unemployment rate_melbourne - inner east,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - Inner South,15-24_unemployment rate_melbourne - inner south,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - North East,15-24_unemployment rate_melbourne - north east,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - North West,15-24_unemployment rate_melbourne - north west,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - Outer East,15-24_unemployment rate_melbourne - outer east,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - South East,15-24_unemployment rate_melbourne - south east,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Melbourne - West,15-24_unemployment rate_melbourne - west,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Mornington Peninsula,15-24_unemployment rate_mornington peninsula,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Regional Victoria youth unemployment rate,15-24_unemployment rate_rest of vic.,abs_lfs_youth_region,,TRUE,12,FALSE,
-AgeRegion,Ballarat,15-24_unemployment rate_ballarat,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Bendigo,15-24_unemployment rate_bendigo,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Geelong,15-24_unemployment rate_geelong,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Hume,15-24_unemployment rate_hume,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Latrobe - Gippsland,15-24_unemployment rate_latrobe - gippsland,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Shepparton,15-24_unemployment rate_shepparton,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Victoria - North West,15-24_unemployment rate_victoria - north west,abs_lfs_youth_region,,FALSE,12,FALSE,
-AgeRegion,Warrnambool and South West,15-24_unemployment rate_warrnambool and south west,abs_lfs_youth_region,,FALSE,12,FALSE,
-MetroUnemployment,Melbourne,A84600145K,abs_ts,2024-12-19,FALSE,3,FALSE,
-MetroUnemployment,Sydney,A84599623K,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.
-MetroUnemployment,Brisbane,A84600151F,abs_ts,2024-12-19,FALSE,3,FALSE,
-MetroUnemployment,Perth,A84600241K,abs_ts,2024-12-19,FALSE,3,FALSE,
-MetroUnemployment,Adelaide,A84600157V,abs_ts,2024-12-19,FALSE,3,FALSE,
-MetroUnemployment,Hobart,A84599791W,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroEmployed,Greater Melbourne employed persons,A84600141A,abs_ts,2024-12-19,TRUE,3,TRUE,
-RegionMetroEmployed,Melbourne - Inner,A84599655C,abs_ts,2024-12-19,FALSE,3,TRUE,All series smoothed with a 3 month rolling average.
-RegionMetroEmployed,Melbourne - Inner East,A84600015L,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - Inner South,A84600183X,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - North East,A84599553R,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - North West,A84600111L,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - Outer East,A84599847W,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - South East,A84599919W,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Melbourne - West,A84600021J,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroEmployed,Mornington Peninsula,A84600189L,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroUnemployed,Greater Melbourne unemployed persons,A84600142C,abs_ts,2024-12-19,TRUE,3,FALSE,
-RegionMetroUnemployed,Melbourne - Inner,A84599656F,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.
-RegionMetroUnemployed,Melbourne - Inner East,A84600016R,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - Inner South,A84600184A,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - North East,A84599554T,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - North West,A84600112R,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - Outer East,A84599848X,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - South East,A84599920F,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Melbourne - West,A84600022K,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployed,Mornington Peninsula,A84600190W,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroEmployed,Regional Victoria employed persons,A84600075R,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.
-RegionNonMetroEmployed,Ballarat,A84599661X,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Bendigo,A84600027W,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Geelong,A84599667L,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Hume,A84599673J,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Latrobe - Gippsland,A84599679W,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Victoria - North West,A84599925T,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Shepparton,A84600117A,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroEmployed,Warrnambool and South West,A84600033T,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroUnemployed,Regional Victoria unemployed persons,A84600076T,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.
-RegionNonMetroUnemployed,Ballarat,A84599662A,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Bendigo,A84600028X,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Geelong,A84599668R,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Hume,A84599674K,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Latrobe - Gippsland,A84599680F,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Victoria - North West,A84599926V,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Shepparton,A84600118C,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployed,Warrnambool and South West,A84600034V,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroParticipation,Regional Victoria participation rate,A84600080J,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.
-RegionNonMetroParticipation,Ballarat,A84599666K,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Bendigo,A84600032R,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Geelong,A84599672F,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Hume,A84599678V,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Latrobe - Gippsland,A84599684R,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Victoria - North West,A84599930K,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Shepparton,A84600122V,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroParticipation,Warrnambool and South West,A84600038C,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionNonMetroUnemployment,Regional Victoria unemployment rate,A84600079X,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.
-RegionNonMetroUnemployment,Ballarat,A84599665J,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Bendigo,A84600031L,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Geelong,A84599671C,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Hume,A84599677T,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Latrobe - Gippsland,A84599683L,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Victoria - North West,A84599929A,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Shepparton,A84600121T,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionNonMetroUnemployment,Warrnambool and South West,A84600037A,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Greater Melbourne unemployment rate,A84600145K,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.
-RegionMetroUnemployment,Melbourne - Inner,A84599659L,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - Inner East,A84600019W,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - Inner South,A84600187J,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - North East,A84599557X,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - North West,A84600115W,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - Outer East,A84599851L,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - South East,A84599923L,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Melbourne - West,A84600025T,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroUnemployment,Mornington Peninsula,A84600193C,abs_ts,2024-12-19,FALSE,3,FALSE,
-RegionMetroParticipation,Greater Melbourne participation rate,A84600146L,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.
-RegionMetroParticipation,Melbourne - Inner,A84599660W,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - Inner East,A84600020F,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - Inner South,A84600188K,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - North East,A84599558A,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - North West,A84600116X,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - Outer East,A84599852R,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - South East,A84599924R,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Melbourne - West,A84600026V,abs_ts,2024-12-19,FALSE,3,TRUE,
-RegionMetroParticipation,Mornington Peninsula,A84600194F,abs_ts,2024-12-19,FALSE,3,TRUE,
-Industry,Victoria - all industries,A84601662A,abs_ts,2024-12-19,TRUE,,TRUE,
-Industry,"Agriculture, Forestry and Fishing",A84601680F,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Mining,A84601683L,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Manufacturing,A84601686V,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,"Electricity, Gas, Water and Waste Services",A84601665J,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Construction,A84601704L,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Wholesale Trade,A84601707V,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Retail Trade,A84601710J,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Accommodation and Food Services,A84601638A,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,"Transport, Postal and Warehousing",A84601653X,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Information Media and Telecommunications,A84601689A,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Financial and Insurance Services,A84601656F,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,"Rental, Hiring and Real Estate Services",A84601713R,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,"Professional, Scientific and Technical Services",A84601668R,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Administrative and Support Services,A84601695W,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Public Administration and Safety,A84601698C,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Education and Training,A84601650T,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Health Care and Social Assistance,A84601671C,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Arts and Recreation Services,A84601641R,abs_ts,2024-12-19,FALSE,,TRUE,
-Industry,Other Services,A84601716W,abs_ts,2024-12-19,FALSE,,TRUE,
-NonMetroUnemployment,Regional Vic.,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.
-NonMetroUnemployment,Regional NSW,A84599629X,abs_ts,2024-12-19,FALSE,3,FALSE,
-NonMetroUnemployment,Regional Qld,A84599785A,abs_ts,2024-12-19,FALSE,3,FALSE,
-NonMetroUnemployment,Regional WA,A84600247X,abs_ts,2024-12-19,FALSE,3,FALSE,
-NonMetroUnemployment,Regional SA,A84599719C,abs_ts,2024-12-19,FALSE,3,FALSE,
-NonMetroUnemployment,Regional Tas.,A84599635V,abs_ts,2024-12-19,FALSE,3,FALSE,
+table_name,name,series_id,parse_method,last_updated,highlight,smoothing_months,up_is_good,caption,update_headline,update_regional,update_industry
+Overview,Unemployment rate,A84423354L,abs_ts,2024-12-12,TRUE,,FALSE,Youth figures are smoothed using a 12 month rolling average; regional figures are smoothed using a 3 month rolling average.,TRUE,FALSE,FALSE
+Overview,Male unemployment rate,A84423242V,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Overview,Female unemployment rate,A84423466F,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Overview,Youth unemployment rate,A84424691V,abs_ts,2024-12-12,FALSE,12,FALSE,"",TRUE,FALSE,FALSE
+Overview,Regional unemployment rate,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+Overview,Unemployed persons,A84423350C,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Overview,Employed persons,A84423349V,abs_ts,2024-12-12,TRUE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Employed full-time,A84423357V,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Employed part-time,pt_emp_vic,abs_lfs_parttime,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Male employment,A84423237A,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Female employment,A84423461V,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Youth employment,A84424687C,abs_ts,2024-12-12,FALSE,12,TRUE,"",TRUE,FALSE,FALSE
+Overview,Participation rate,A84423355R,abs_ts,2024-12-12,TRUE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Male participation rate,A84423243W,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Female participation rate,A84423467J,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Youth participation rate,A84424692W,abs_ts,2024-12-12,FALSE,12,TRUE,"",TRUE,FALSE,FALSE
+Overview,Monthly hours worked in all jobs,A84426256L,abs_ts,2024-12-12,TRUE,,TRUE,"",TRUE,FALSE,FALSE
+Overview,Underemployment rate,A85223450L,abs_ts,2024-12-12,TRUE,,FALSE,"",TRUE,FALSE,FALSE
+Overview,Underutilisation rate,A85223451R,abs_ts,2024-12-12,TRUE,,FALSE,"",TRUE,FALSE,FALSE
+Overview,Employment to population ratio,A84423356T,abs_ts,2024-12-12,TRUE,,TRUE,"",TRUE,FALSE,FALSE
+Sex,Male employment,A84423237A,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Sex,Female employment,A84423461V,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Sex,Male unemployed people,A84423238C,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Sex,Female unemployed people,A84423462W,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Sex,Male unemployment rate,A84423242V,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Sex,Female unemployment rate,A84423466F,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Sex,Male participation rate,A84423243W,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+Sex,Female participation rate,A84423467J,abs_ts,2024-12-12,FALSE,,TRUE,"",TRUE,FALSE,FALSE
+StateUnemployment,Australia,A84423050A,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,Victoria,A84423354L,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,New South Wales,A84423270C,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,Queensland,A84423284T,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,Western Australia,A84423326C,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,South Australia,A84423368A,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+StateUnemployment,Tasmania,A84423298F,abs_ts,2024-12-12,FALSE,,FALSE,"",TRUE,FALSE,FALSE
+Age,Youth employment,A84424687C,abs_ts,2024-12-12,TRUE,12,TRUE,All series smoothed with a 12 month rolling average.,TRUE,FALSE,FALSE
+Age,Youth unemployment rate,A84424691V,abs_ts,2024-12-12,TRUE,12,FALSE,"",TRUE,FALSE,FALSE
+Age,Male youth unemployment rate,15-24_males_unemployment rate,abs_lfs_youth,2024-12-19,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+Age,Female youth unemployment rate,15-24_females_unemployment rate,abs_lfs_youth,2024-12-19,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+Age,Unemployed total,A84424688F,abs_ts,2024-12-12,TRUE,12,FALSE,"",TRUE,FALSE,FALSE
+Age,Youth participation rate,A84424692W,abs_ts,2024-12-12,TRUE,12,TRUE,"",TRUE,FALSE,FALSE
+Age,Participation rate - youth not in full-time study,A84424602F,abs_ts,2024-12-12,FALSE,12,TRUE,"",TRUE,FALSE,FALSE
+AgeRegion,Greater Melbourne youth unemployment rate,15-24_unemployment rate_greater melbourne,abs_lfs_youth_region,,TRUE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - Inner,15-24_unemployment rate_melbourne - inner,abs_lfs_youth_region,,FALSE,12,FALSE,All series smoothed with a 12 month rolling average.,FALSE,TRUE,TRUE
+AgeRegion,Melbourne - Inner East,15-24_unemployment rate_melbourne - inner east,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - Inner South,15-24_unemployment rate_melbourne - inner south,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - North East,15-24_unemployment rate_melbourne - north east,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - North West,15-24_unemployment rate_melbourne - north west,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - Outer East,15-24_unemployment rate_melbourne - outer east,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - South East,15-24_unemployment rate_melbourne - south east,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Melbourne - West,15-24_unemployment rate_melbourne - west,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Mornington Peninsula,15-24_unemployment rate_mornington peninsula,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Regional Victoria youth unemployment rate,15-24_unemployment rate_rest of vic.,abs_lfs_youth_region,,TRUE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Ballarat,15-24_unemployment rate_ballarat,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Bendigo,15-24_unemployment rate_bendigo,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Geelong,15-24_unemployment rate_geelong,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Hume,15-24_unemployment rate_hume,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Latrobe - Gippsland,15-24_unemployment rate_latrobe - gippsland,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Shepparton,15-24_unemployment rate_shepparton,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Victoria - North West,15-24_unemployment rate_victoria - north west,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+AgeRegion,Warrnambool and South West,15-24_unemployment rate_warrnambool and south west,abs_lfs_youth_region,,FALSE,12,FALSE,"",FALSE,TRUE,TRUE
+MetroUnemployment,Melbourne,A84600145K,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+MetroUnemployment,Sydney,A84599623K,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+MetroUnemployment,Brisbane,A84600151F,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+MetroUnemployment,Perth,A84600241K,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+MetroUnemployment,Adelaide,A84600157V,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+MetroUnemployment,Hobart,A84599791W,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Greater Melbourne employed persons,A84600141A,abs_ts,2024-12-19,TRUE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - Inner,A84599655C,abs_ts,2024-12-19,FALSE,3,TRUE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - Inner East,A84600015L,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - Inner South,A84600183X,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - North East,A84599553R,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - North West,A84600111L,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - Outer East,A84599847W,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - South East,A84599919W,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Melbourne - West,A84600021J,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroEmployed,Mornington Peninsula,A84600189L,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Greater Melbourne unemployed persons,A84600142C,abs_ts,2024-12-19,TRUE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - Inner,A84599656F,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - Inner East,A84600016R,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - Inner South,A84600184A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - North East,A84599554T,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - North West,A84600112R,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - Outer East,A84599848X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - South East,A84599920F,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Melbourne - West,A84600022K,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployed,Mornington Peninsula,A84600190W,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Regional Victoria employed persons,A84600075R,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Ballarat,A84599661X,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Bendigo,A84600027W,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Geelong,A84599667L,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Hume,A84599673J,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Latrobe - Gippsland,A84599679W,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Victoria - North West,A84599925T,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Shepparton,A84600117A,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroEmployed,Warrnambool and South West,A84600033T,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Regional Victoria unemployed persons,A84600076T,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Ballarat,A84599662A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Bendigo,A84600028X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Geelong,A84599668R,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Hume,A84599674K,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Latrobe - Gippsland,A84599680F,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Victoria - North West,A84599926V,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Shepparton,A84600118C,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployed,Warrnambool and South West,A84600034V,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Regional Victoria participation rate,A84600080J,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Ballarat,A84599666K,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Bendigo,A84600032R,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Geelong,A84599672F,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Hume,A84599678V,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Latrobe - Gippsland,A84599684R,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Victoria - North West,A84599930K,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Shepparton,A84600122V,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroParticipation,Warrnambool and South West,A84600038C,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Regional Victoria unemployment rate,A84600079X,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Ballarat,A84599665J,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Bendigo,A84600031L,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Geelong,A84599671C,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Hume,A84599677T,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Latrobe - Gippsland,A84599683L,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Victoria - North West,A84599929A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Shepparton,A84600121T,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionNonMetroUnemployment,Warrnambool and South West,A84600037A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Greater Melbourne unemployment rate,A84600145K,abs_ts,2024-12-19,TRUE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - Inner,A84599659L,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - Inner East,A84600019W,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - Inner South,A84600187J,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - North East,A84599557X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - North West,A84600115W,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - Outer East,A84599851L,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - South East,A84599923L,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Melbourne - West,A84600025T,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroUnemployment,Mornington Peninsula,A84600193C,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Greater Melbourne participation rate,A84600146L,abs_ts,2024-12-19,TRUE,3,TRUE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - Inner,A84599660W,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - Inner East,A84600020F,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - Inner South,A84600188K,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - North East,A84599558A,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - North West,A84600116X,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - Outer East,A84599852R,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - South East,A84599924R,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Melbourne - West,A84600026V,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+RegionMetroParticipation,Mornington Peninsula,A84600194F,abs_ts,2024-12-19,FALSE,3,TRUE,"",FALSE,TRUE,TRUE
+Industry,Victoria - all industries,A84601662A,abs_ts,2024-12-19,TRUE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,"Agriculture, Forestry and Fishing",A84601680F,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Mining,A84601683L,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Manufacturing,A84601686V,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,"Electricity, Gas, Water and Waste Services",A84601665J,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Construction,A84601704L,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Wholesale Trade,A84601707V,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Retail Trade,A84601710J,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Accommodation and Food Services,A84601638A,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,"Transport, Postal and Warehousing",A84601653X,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Information Media and Telecommunications,A84601689A,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Financial and Insurance Services,A84601656F,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,"Rental, Hiring and Real Estate Services",A84601713R,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,"Professional, Scientific and Technical Services",A84601668R,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Administrative and Support Services,A84601695W,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Public Administration and Safety,A84601698C,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Education and Training,A84601650T,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Health Care and Social Assistance,A84601671C,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Arts and Recreation Services,A84601641R,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+Industry,Other Services,A84601716W,abs_ts,2024-12-19,FALSE,,TRUE,"",FALSE,FALSE,TRUE
+NonMetroUnemployment,Regional Vic.,A84600079X,abs_ts,2024-12-19,FALSE,3,FALSE,All series smoothed with a 3 month rolling average.,FALSE,TRUE,TRUE
+NonMetroUnemployment,Regional NSW,A84599629X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+NonMetroUnemployment,Regional Qld,A84599785A,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+NonMetroUnemployment,Regional WA,A84600247X,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+NonMetroUnemployment,Regional SA,A84599719C,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE
+NonMetroUnemployment,Regional Tas.,A84599635V,abs_ts,2024-12-19,FALSE,3,FALSE,"",FALSE,TRUE,TRUE

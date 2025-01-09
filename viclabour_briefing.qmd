@@ -29,23 +29,66 @@ format:
 #| echo: false
 #| output: false
 
-# Load functions
-source("R/util.R")
+# Packages
+library(data.table)
+library(lubridate)
+library(fst)
 
-# Identify release information
-release_month <- month.name[10]
-release_type <- c(
-  "headline statistics", 
-  "regional update",
-  "regional and industry update"
-  )[2]
-subtitle <- paste(release_month, release_type)
+# Latest data
+indx <- fread("table_index.csv")
+release_date <- indx[, as.Date(max(last_updated, na.rm = T))]
+reference_date <- read_fst("data/jobs_data.fst", columns = "date")[[1]]
+reference_date <- max(reference_date)
+reference_month <- month.name[month(reference_date)]
 
-# Identify new releases
-is_new <- list(
-  youth = "",
-  regional = "\\hfill \\badge{New}"
-)
+# Determine release type
+release_type <- Sys.getenv("update_type", "auto")
+release_type <- "headline"
+
+
+# Geneerate subtitle, chapter badges and TOC updated flags
+if(!(release_type %in% c("headline", "regional", "industry"))){
+  
+  subtitle <- "Comprehensive data update"
+  badge <- c()
+  toc_updated <-c()
+  
+} else {
+  
+  subtitle <- paste(
+    reference_month, 
+    switch(
+      release_type,
+      "headline" = "headline statistics",
+      "regional" = "regional statistics",
+      "industry" = "region and industry statistics"
+    )
+  )
+  
+  badge_col <- paste0("update_", release_type)
+  badge_df <- indx[
+    , 
+    .(
+      badge = if(sum(.SD[[1]]) / length(.SD[[1]]) >= 0.5){
+        "\\hfill \\badge{\\normalfont{New}}"
+      } else {
+        ""
+      },
+     toc = if(sum(.SD[[1]]) / length(.SD[[1]]) >= 0.5){
+        "\\hspace{3pt}\\small{\\badge{New}}"
+      } else {
+      ""
+      }
+    ),
+    table_name,
+    .SDcols = badge_col
+  ]
+  badge <- badge_df$badge
+  names(badge) <- badge_df$table_name
+  
+  toc_updated <- badge_df$toc
+  names(toc_updated) <- badge_df$table_name
+}
 
 
 ```
@@ -69,7 +112,7 @@ is_new <- list(
         {\large `r subtitle`}
         \linebreak
         \linebreak
-        `r format(Sys.Date(), "%e %B %Y")`
+        `r format(release_date, "%e %B %Y")`
         \vfill
       \end{flushright}
     \end{varwidth}
@@ -91,67 +134,67 @@ is_new <- list(
 
 
 
-
-
-
-# Talking points `r is_new[["regional"]]`
-
+\chapter[Talking points `r toc_updated["Overview"]`]{Talking points `r badge["Overview"]`} 
 \input{./assets/talking_points/talking_points.tex}
 
 
 
 
-
-\smallspacechapter{Employment Summary}
-
+\smallspacechapter[Employment Summary `r toc_updated["Overview"]`]{Employment Summary `r badge["Overview"]`}
 \vfill
 \input{./assets/latex_table/Overview.tex}
 \vfill
-
-
 \newpage
+
+
+
+
 \vspace*{1mm}
 \vfill
-
-## Sex
-
+\section{Sex} 
 \input{./assets/latex_table/Sex.tex}
 \vfill
 
-## Unemployment rate by state
 
+
+
+\section{Unemployment rate by state}
 \input{./assets/latex_table/StateUnemployment.tex}
 \vfill
 
 
-# Youth
 
-Youth labour market data provides insights into headline figures. Youth labour force data is volatile therefore DJSIR smooths the data by using 12-month averages. While this assists in observing underlying trends, it makes large month-to-month changes in underlying conditions less apparent.
-\linebreak
-\linebreak
+
+\chapter[Youth `r toc_updated["Age"]`]{Youth `r badge["Age"]`}
+DJSIR smooths youth statistics using 12-month average to remove volatility present in the data. While smoothing assists in observing underlying trends, it makes large month-to-month changes less apparent. Please note that regional and gender-based youth statistics update later in each month than other youth statistics. 
+
 
 \input{./assets/latex_table/Age.tex}
-
 \pagebreak
+
+
+
+
 \vspace*{1mm}
 \vfill
-
-## Youth by region 
-
+\section[Youth by region `r if(release_type %in% c("regional", "industry")) "\\emph{(updated)}"`]{Youth by region}
 \input{./assets/latex_table/AgeRegion.tex}
 \vfill
 
-# Metropolitan Melbourne
 
+
+
+\chapter[Metropolitan Melbourne `r toc_updated["RegionMetroUnemployment"]`]{Metropolitan Melbourne `r badge["RegionMetroUnemployment"]`}
 \vfill
-
-## Metropolitan unemployment rate by state
-
+\section{Metropolitan unemployment rate by state}
 \input{./assets/latex_table/MetroUnemployment.tex}
 \vfill
 \pagebreak
 
-\ 
+
+
+
+\vspace*{1mm}
 \vfill
 
 ## Employment across Greater Melbourne
@@ -186,11 +229,14 @@ Youth labour market data provides insights into headline figures. Youth labour f
 \input{./assets/latex_table/RegionMetroParticipation.tex}
 \vfill
 
-# Regional Victoria
+# Regional Victoria `r badge["RegionNonMetroUnemployment"]`
+
+\vfill
 
 ## Regional unemployment rate by state
 
 \input{./assets/latex_table/NonMetroUnemployment.tex}
+\vfill
 \pagebreak
 
 \ 
@@ -230,5 +276,5 @@ Youth labour market data provides insights into headline figures. Youth labour f
 \vfill
 
 
-\smallspacechapter{Industry}
+\smallspacechapter[Industry `r badge["Industry"]`]{Industry `r badge["Industry"]`}
 \input{./assets/latex_table/Industry.tex}

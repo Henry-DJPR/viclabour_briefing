@@ -13,6 +13,7 @@
 \usepackage{makecell}
 \usepackage{adjustbox}
 \usepackage{titlesec}
+\usepackage{ifthen}
 
 % setup for packages
 \tcbuselibrary{most}
@@ -83,17 +84,19 @@ BoldItalicFont = ./assets/VIC-BoldItalic.ttf,
 
 
 % custom small space title
-\newcommand{\smallspacechapter}[1]{
+\newcommand{\smallspacechapter}[2][]{
   {
     \titleformat{\chapter}[display]
         {\normalfont\huge\bfseries} % Custom formatting
         {}                          % Label
         {0pt}                       % Space between label and title
-        {\Huge}                    % Title text style
+        {\Huge}                     % Title text style
 
-    \titlespacing*{\chapter}{0pt}{-20pt}{0pt} % No spacing: 0pt before and after
+    \titlespacing*{\chapter}{0pt}{-20pt}{0pt}
 
-    \chapter{#1}
+    \ifthenelse{\equal{#1}{}}%
+      {\chapter{#2}}% If no short title is provided, use only the full title
+      {\chapter[#1]{#2}}% If a short title is provided, use it for TOC
   }
 }
 

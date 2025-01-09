@@ -1,6 +1,5 @@
 # Set options
-force_refresh <- interactive()
-full_data_redownload <- FALSE
+update_type <- Sys.getenv("update_type", "auto")
 options(repos = structure(c(CRAN="http://cran.rstudio.com/")))
 options(timeout = 120)
 
@@ -25,13 +24,26 @@ indx <- fread("table_index.csv")
 
 # Check latest dates
 indx[, latest := check_latest_data(series_id, parse_method)]
+indx[, just_updated := latest > last_updated]
 
+
+# Flag series for manual update based on the 'update_' cols in the table index
+if(update_type %in% c("headline", "regional", "industry")){
+  indx[, manual_update := .SD[[1]], .SDcols = paste0("update_", update_type)]
+} else if(update_type == "all"){
+  indx[, manual_update := TRUE]
+} else {
+  indx[, manual_update := FALSE]
+}
 
 # Pull out unique series to update
-to_update <- indx[just_updated == T, .N, .(series_id, parse_method)]
-if(full_data_redownload){
-  to_update <- indx[, .N, .(series_id, parse_method)]
-}
+to_update <- indx[
+  just_updated == T | manual_update == T,
+  .N,
+  .(series_id, parse_method)
+]
+
+indx[, c("just_updated", "manual_update") := NULL]
 
 
 # generate new data if required
@@ -46,10 +58,7 @@ if(nrow(to_update) > 0){
   indx[, latest := NULL]
   update_briefing <- T
 
-  fwrite(
-    indx,
-    "table_index.csv"
-  )
+  fwrite(indx, "table_index.csv")
 
 } else {
   new_data <- NULL
@@ -58,7 +67,7 @@ if(nrow(to_update) > 0){
 
 
 # Update tables if required
-if(update_briefing | force_refresh){
+if(update_briefing){
 
   message("Updating brefing components")
 
@@ -93,7 +102,12 @@ if(update_briefing | force_refresh){
   write.fst(jobs_data, "data/jobs_data.fst", compress = 100)
 
   # Generate tables
-  table_list <- split(indx, by = "table_name")
+  tables_to_update <- indx[
+    series_id %in% unique(to_update$series_id),
+    unique(table_name)
+  ]
+
+  table_list <- split(indx[table_name %in% tables_to_update], by = "table_name")
   lapply(
     table_list,
     \(x){
